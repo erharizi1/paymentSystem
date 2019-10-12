@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>List of branches</title>
+</head>
+<body>
+<div align="center">
+    <h1>Branch List</h1>
+   
+    <br/><br/>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Branch Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="branch: ${listBranches}">
+                <td th:text="${branch.branchId}">branch ID</td>
+                <td th:text="${branch.branchName}">branch Name</td>
+                <td>                 
+                  <a th:href="@{'/deletebranch/' + ${branch.branchId}}">Delete</a>    
+                  <a th:href="@{'/editbranch/' + ${branch.branchId}}">Edit</a>          
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>   
+</body>
+</html>
