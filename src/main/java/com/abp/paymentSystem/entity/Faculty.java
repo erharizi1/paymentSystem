@@ -11,29 +11,27 @@ public class Faculty {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="faculty_id")
-	private long faculty_id;
-	@Column(name="name")
-	private String name;
+	private long facultyId;
+	@Column(name="faculty_name")
+	private String facultyName;
 	
 	public Faculty() {}
 	
-	public Faculty(String name) {
-		this.name = name;
+	public Faculty(String facultyName) {
+		this.facultyName = facultyName;
 	}
 
-
-
-	public long getFaculty_id() {
-		return faculty_id;
+	public long getFacultyId() {
+		return facultyId;
 	}
-	public void setFaculty_id(long faculty_id) {
-		this.faculty_id = faculty_id;
+	public void setFacultyId(long facultyId) {
+		this.facultyId = facultyId;
 	}
-	public String getName() {
-		return name;
+	public String getfacultyName() {
+		return facultyName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setfacultyName(String facultyName) {
+		this.facultyName = facultyName;
 	}
 	
 	

@@ -15,13 +15,15 @@
             <tr>
                 <th>ID</th>
                 <th>Branch Name</th>
+                 <th>Faculty Id</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="branch: ${listBranches}">
                 <td th:text="${branch.branchId}">branch ID</td>
-                <td th:text="${branch.branchName}">branch Name</td>
+                <td th:text="${branch.branchName}">Branch Name</td>
+                 <td th:text="${branch.faculty.facultyId}">Faculty Id</td>
                 <td>                 
                   <a th:href="@{'/deletebranch/' + ${branch.branchId}}">Delete</a>    
                   <a th:href="@{'/editbranch/' + ${branch.branchId}}">Edit</a>          

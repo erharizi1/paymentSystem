@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
 
 @Entity
@@ -22,8 +24,10 @@ public class Branch {
 	@Column(name="branch_name")
 	private String branchName;
 	
-
-	
+	@ManyToOne
+	@JoinColumn(nullable=false, name = "faculty_id")
+	private Faculty faculty;
+		
 	public Branch() {
 		
 	}
@@ -44,9 +48,20 @@ public class Branch {
 		this.branchName = branchName;
 	}
 
-	public Branch(String branchName) {
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
+	public Branch(String branchName, Faculty faculty) {
 		super();
 		this.branchName = branchName;
+		this.faculty = faculty;
 	}
+
+	
 
 }
