@@ -86,8 +86,4 @@ public class Student {
 	public void setAddres(String addres) {
 		this.addres = addres;
 	}
-	
-
-	
-
 }
