@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Create new finance</title>
+</head>
+<body>
+<div align="center">
+        <h1>Add a new finance</h1>
+        <br>
+        <form action="#" th:action="@{/saveFinance}" th:object="${finance}"
+            method="post">
+ 
+            <table>
+               
+                <tr>
+                    <td>Finance Name:</td>            
+                    <td><input type="text" th:field="*{name}" /></td>
+                </tr>
+                 <tr>                
+                     <td>Finance Salary:</td>
+                    <td><input type="text" th:field="*{salary}" /></td>
+                </tr>
+                <br>
+                 <tr>                
+                     <select th:field="*{faculty}">
+					    <option th:each="f: ${allFaculties}" th:value="${f.id}" th:text="${f.name}" />
+					  </select>
+                </tr>
+                
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+            
+        </form>
+    </div>
+</body>
+</html>

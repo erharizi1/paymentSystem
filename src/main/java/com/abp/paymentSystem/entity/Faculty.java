@@ -1,39 +1,56 @@
 package com.abp.paymentSystem.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
 
 @Entity
 public class Faculty {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="faculty_id")
-	private long faculty_id;
-	@Column(name="name")
+	private Long id;
 	private String name;
+	@OneToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE,
+					CascadeType.DETACH,CascadeType.REFRESH})
 	
-	public Faculty() {}
-	
-	public Faculty(String name) {
+	private List<Finance> finaces;
+	public Faculty(String name, List<Finance> finaces) {
+		super();
 		this.name = name;
+		
 	}
-
-
-
-	public long getFaculty_id() {
-		return faculty_id;
+	public Faculty() {
+		
 	}
-	public void setFaculty_id(long faculty_id) {
-		this.faculty_id = faculty_id;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public List<Finance> getFinaces() {
+		return finaces;
+	}
+	public void setFinaces(List<Finance> finaces) {
+		this.finaces = finaces;
+	}
+	@Override
+	public String toString() {
+		return "Faculty [id=" + id + ", name=" + name + "]";
 	}
 	
 	
