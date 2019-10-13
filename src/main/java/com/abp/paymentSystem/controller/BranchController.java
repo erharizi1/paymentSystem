@@ -20,6 +20,11 @@ public class BranchController {
 	
 	@RequestMapping("/")
 	public String showform() {
+		return "main-menu";
+	}
+	
+	@RequestMapping("/welcome-page")
+	public String showFinance() {
 		return "welcome-page";
 	}
 	
