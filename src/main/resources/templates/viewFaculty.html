@@ -7,28 +7,29 @@
 <body>
 <div align="center">
 
-    <h1>Branch List</h1>   
+    <h1>Faculty List</h1>   
     <br/><br/>
     <a href="newFaculty">Create</a>
     <table border="1">
         <thead>
             <tr>
                 <th>Name</th>
-                
+                <th>Finances</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="faculty: ${allFaculties}">
                 
                 <td th:text="${faculty.name}"></td>
-                
-                <!-- <td th:each="x:${faculty.finances}">
-                	<p th:text="${x.name}"></p>
+                <td>
+	                <ul th:each="finances:${faculty.finaces}">
+	                	<li th:text="${finances.name}"></li>
+	                </ul>
                 </td>
-                <td>                 
+                <!-- <td>                 
                   <a th:href="@{'/deletebranch/' + ${branch.branchId}}">Delete</a>    
                   <a th:href="@{'/editbranch/' + ${branch.branchId}}">Edit</a>          
-                </td> -->
+                </td>  -->
             </tr>
         </tbody>
     </table>

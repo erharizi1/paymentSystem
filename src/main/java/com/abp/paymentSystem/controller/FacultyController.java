@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.abp.paymentSystem.entity.Faculty;
-
+import com.abp.paymentSystem.entity.Finance;
 import com.abp.paymentSystem.service.FacultyService;
 
 @Controller
@@ -34,6 +34,7 @@ public class FacultyController {
 		facultyService.save(faculty);
 		return"viewFaculty";
 	}
+
 
 
 	
@@ -64,6 +65,14 @@ public class FacultyController {
 	public String deleteFaculty(@PathVariable(name = "id") long id) {
 		facultyService.delete(id);
 	    return "redirect:/";       
+	}
+
+	@RequestMapping(value="/detailsFaculty/{id}")
+	public String showDetailsFaculty(@PathVariable(name = "id") long id,Model model) {
+		model.addAttribute("faculty",facultyService.get(id));
+		List<Finance> financeList=facultyService.get(id).getFinaces();
+		model.addAttribute("list",financeList);
+		return "detailsFaculty";
 
 	}
 }

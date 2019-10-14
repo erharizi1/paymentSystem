@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import com.abp.paymentSystem.entity.Faculty;
 import com.abp.paymentSystem.entity.Finance;
 import com.abp.paymentSystem.service.FacultyService;
 import com.abp.paymentSystem.service.FinanceService;
@@ -40,6 +40,10 @@ public class FinanceController {
 	@RequestMapping(value = "/saveFinance", method = RequestMethod.POST)
 	public String saveFinances(@Valid @ModelAttribute("finance") Finance finance,Model model) {
 		financeService.saveFinance(finance);
+		Faculty faculty=facultyService.get(finance.getFaculty().getId());
+		faculty.getFinaces().add(finance);
+		facultyService.save(faculty);
+		
 	    return "redirect:/";
 	}
 
