@@ -16,17 +16,23 @@ import javax.persistence.OneToMany;
 public class Faculty {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	private Long id;
+
+	@Column(name="name")
 	private String name;
 	@OneToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE,
 					CascadeType.DETACH,CascadeType.REFRESH})
 	
 	private List<Finance> finaces;
+	
+	
 	public Faculty(String name, List<Finance> finaces) {
 		super();
 		this.name = name;
 		
 	}
+
 	public Faculty() {
 		
 	}
@@ -36,12 +42,17 @@ public class Faculty {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 	public List<Finance> getFinaces() {
 		return finaces;
 	}

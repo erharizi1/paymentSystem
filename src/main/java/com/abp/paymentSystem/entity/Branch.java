@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
 
 @Entity
@@ -15,38 +17,50 @@ public class Branch {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="branch_id")
+	@Column(name="id")
 	@OrderBy("id DESC")
-	private long branchId;
+	private long id;
 	
-	@Column(name="branch_name")
-	private String branchName;
+	@Column(name="name")
+	private String name;
 	
-
-	
+	@ManyToOne
+	@JoinColumn(nullable=false, name = "faculty_id")
+	private Faculty faculty;
+		
 	public Branch() {
 		
 	}
 
-	public long getBranchId() {
-		return branchId;
+	public long getId() {
+		return id;
 	}
 
-	public void setBranchId(long branchId) {
-		this.branchId = branchId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public String getBranchName() {
-		return branchName;
+	public String getName() {
+		return name;
 	}
 
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Branch(String branchName) {
-		super();
-		this.branchName = branchName;
+	public Faculty getFaculty() {
+		return faculty;
 	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
+	public Branch(String name, Faculty faculty) {
+		this.name = name;
+		this.faculty = faculty;
+	}
+
+	
 
 }

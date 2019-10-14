@@ -14,8 +14,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Course Name</th>
-                <th>Course Price</th>
+                <th>Name</th>
+                <th>Price</th>
                   <th>Branch Id</th>
                 <th>Actions</th>
                 
@@ -23,13 +23,13 @@
         </thead>
         <tbody>
             <tr th:each="course: ${listCourses}">
-                <td th:text="${course.courseId}">Course ID</td>
-                <td th:text="${course.courseName}">Course Name</td>
-                 <td th:text="${course.coursePrice}">Course Price</td>
-                  <td th:text="${course.branch.branchId}">Branch Id</td>
+                <td th:text="${course.Id}">Course ID</td>
+                <td th:text="${course.name}">Course Name</td>
+                 <td th:text="${course.price}">Course Price</td>
+                  <td th:text="${course.branch.id}">Branch Id</td>
                 <td>                 
-                  <a th:href="@{'/deletecourse/' + ${course.courseId}}">Delete</a>    
-                  <a th:href="@{'/editcourse/' + ${course.courseId}}">Edit</a>          
+                  <a th:href="@{'/deletecourse/' + ${course.id}}">Delete</a>    
+                  <a th:href="@{'/editcourse/' + ${course.id}}">Edit</a>          
                 </td>
             </tr>
         </tbody>

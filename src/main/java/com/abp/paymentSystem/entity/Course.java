@@ -1,11 +1,15 @@
 package com.abp.paymentSystem.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
 
@@ -16,13 +20,13 @@ public class Course {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="course_id")
 	@OrderBy("id DESC")
-	private long courseId;
+	private long id;
 	
-	@Column(name="course_name")
-	private String courseName;
+	@Column(name="name")
+	private String name;
 	
-	@Column(name="course_price")
-	private String coursePrice;
+	@Column(name="price")
+	private String price;
 	
 	
 //	  @ManyToOne	  
@@ -33,40 +37,52 @@ public class Course {
 	@ManyToOne
 	@JoinColumn(name = "branch_id")
 	private Branch branch;
-	
+	@ManyToMany
+	@JoinTable(name="course_student",joinColumns=@JoinColumn(name="course_ID"),inverseJoinColumns=@JoinColumn(name="student_ID"))
+	private List<Student> students;
 	
 	public Course() {
 		
 	}
 
-
-	public long getCourseId() {
-		return courseId;
+	
+	public List<Student> getStudents() {
+		return students;
 	}
 
 
-	public void setCourseId(long courseId) {
-		this.courseId = courseId;
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 
 
-	public String getCourseName() {
-		return courseName;
+	public long getId() {
+		return id;
 	}
 
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
-	public String getCoursePrice() {
-		return coursePrice;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setCoursePrice(String coursePrice) {
-		this.coursePrice = coursePrice;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getprice() {
+		return price;
+	}
+
+
+	public void setprice(String price) {
+		this.price = price;
 	}
 
 
@@ -80,9 +96,9 @@ public class Course {
 	}
 
 
-	public Course(String courseName, String coursePrice, Branch branch) {
-		this.courseName = courseName;
-		this.coursePrice = coursePrice;
+	public Course(String name, String price, Branch branch) {
+		this.name = name;
+		this.price = price;
 		this.branch = branch;
 	}
 
