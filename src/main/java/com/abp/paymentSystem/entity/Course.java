@@ -1,11 +1,15 @@
 package com.abp.paymentSystem.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
 
@@ -33,10 +37,22 @@ public class Course {
 	@ManyToOne
 	@JoinColumn(name = "branch_id")
 	private Branch branch;
-	
+	@ManyToMany
+	@JoinTable(name="course_student",joinColumns=@JoinColumn(name="course_ID"),inverseJoinColumns=@JoinColumn(name="student_ID"))
+	private List<Student> students;
 	
 	public Course() {
 		
+	}
+
+	
+	public List<Student> getStudents() {
+		return students;
+	}
+
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 
 

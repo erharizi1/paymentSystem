@@ -3,29 +3,27 @@
     xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
-<title>Add new Branch</title>
+<title>Add new Faculty</title>
 </head>
 <body>
     <div align="center">
-        <h1>Add New Branch</h1>
+        <h1>Add New Faculty</h1>
         <br>
-        <form action="#" th:action="@{/savebranch}" th:object="${branch}"
+        <form action="#" th:action="@{/savefaculty}" th:object="${faculty}"
             method="post">
  
             <table>
                
                 <tr>
-                    <td>Branch Name:</td>
-                    <td><input type="text" th:field="*{branchName}" /></td>
+                    <td>Faculty name:</td>            
+                    <td><input type="text" th:field="*{facultyName}" /></td>
                 </tr>
-                  <tr>                
-                     <td>Faculty Id:</td>
-                    <td><input type="text" th:field="*{faculty}" /></td>
-                </tr>
+                  
                 <tr>
                     <td colspan="2"><button type="submit">Save</button> </td>
                 </tr>
             </table>
+            
         </form>
     </div>
 </body>

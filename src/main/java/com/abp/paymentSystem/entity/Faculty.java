@@ -27,6 +27,14 @@ public class Faculty {
 	public void setFacultyId(long facultyId) {
 		this.facultyId = facultyId;
 	}
+	public String getFacultyName() {
+		return facultyName;
+	}
+
+	public void setFacultyName(String facultyName) {
+		this.facultyName = facultyName;
+	}
+
 	public String getfacultyName() {
 		return facultyName;
 	}
