@@ -25,32 +25,26 @@ public class BranchController {
 		return "main-menu";
 	}
 	
-	@RequestMapping("/welcome-page")
-	public String showFinance() {
-		return "welcome-page";
-	}
-	
-	@RequestMapping("/list-branches")
+
+	@RequestMapping("/Branch/list-branches")
 	public String viewBranches(Model model) {
 	    List<Branch> listBranches = (List<Branch>) branchService.listAllBranches();
 	    model.addAttribute("listBranches", listBranches);
-	        return "list-branches";
+	        return "Branch/list-branches";
 	}
 	
-	@RequestMapping("/register-form")
+	@RequestMapping("/Branch/register-form")
 	public String showBranches(Model model) {
 		Branch branch = new Branch();
 		    model.addAttribute("branch", branch);
 		    model.addAttribute("allFaculties", facultyService.listAll());
-		return "register-form";
+		return "Branch/register-form";
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/savebranch", method = RequestMethod.POST)
 	public String saveBranches(@ModelAttribute("branch") Branch branch) {
 		branchService.saveBranch(branch);
-		return "redirect:/";
+		return "redirect:/Branch/list-branches";
 	}
 	
 	@RequestMapping("/deletebranch/{id}")

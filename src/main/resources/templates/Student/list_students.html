@@ -3,12 +3,12 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8"/>
-<title>List of studentss</title>
+<title>List of students</title>
 </head>
 <body>
 <div align="center">
     <h1>Students List</h1>
-   
+   <a href="/Student/register_student">Create</a>
     <br/><br/>
     <table border="1">
         <thead>
@@ -17,7 +17,7 @@
                 <th>Student First name</th>
                  <th>Student Last name</th>
                 <th>Student E-mail</th>
-                <th>Student Addres</th>
+                <th>Student Address</th>
                 <th>Student branch id</th>
                 <th>Student faculty id</th>
             </tr>
@@ -28,7 +28,7 @@
                 <td th:text="${student.firstname}">Student FirstName</td>
                 <td th:text="${student.lastname}">Student LastName</td>
                 <td th:text="${student.email}">Student Email</td>
-                <td th:text="${student.addres}">Student Addres</td>
+                <td th:text="${student.addres}">Student Address</td>
                 <td th:text="${student.faculty.facultyId}">Faculty Id</td>
                 <td th:text="${student.branch.branchId}">Faculty Id</td>
                 <td>                 

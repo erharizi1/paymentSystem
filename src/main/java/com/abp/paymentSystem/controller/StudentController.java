@@ -19,18 +19,18 @@ public class StudentController {
 @Autowired private StudentService studentService;
 	
 	
-	@RequestMapping("/list_students")
+	@RequestMapping("/Student/list_students")
 	public String viewStudents(Model model) {
 	    List<Student> listStudents = (List<Student>) studentService.listAll();
 	    model.addAttribute("listStudents", listStudents);
-	        return "list_students";
+	        return "Student/list_students";
 	}
 	
-	@RequestMapping("/register_student")
+	@RequestMapping("/Student/register_student")
 	public String newStudent(Model model) {
 		Student student = new Student();
 		    model.addAttribute("student", student);
-		return "register_student";
+		return "Student/register_student";
 	}
 	
 	
@@ -38,7 +38,7 @@ public class StudentController {
 	@RequestMapping(value = "/savestudent", method = RequestMethod.POST)
 	public String saveStudent(@ModelAttribute("student") Student student) {
 		studentService.save(student);
-	    return "redirect:/";
+	    return "redirect:/Student/list_students";
 	}
 	
 	@RequestMapping("/deletestudent/{id}")

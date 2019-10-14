@@ -23,19 +23,19 @@ public class FinanceController {
 	private FinanceService financeService;
 	@Autowired
 	private FacultyService facultyService;
-	@RequestMapping("/viewFinance")
+	@RequestMapping("/Finance/viewFinance")
 	public String indexOfFinance(Model model) {
 		List<Finance> allFinances=(List<Finance>)financeService.listAllFinances();
 		model.addAttribute("allFinances",allFinances);
-		return "viewFinance";
+		return "Finance/viewFinance";
 	}
 	
-	@RequestMapping("/newFinance")
+	@RequestMapping("/Finance/newFinance")
 	public String createNewFinance(Model model) {
 		Finance finance=new Finance();
 		model.addAttribute("finance",finance);
 		model.addAttribute("allFaculties",facultyService.listAll());
-		return "newFinance";
+		return "Finance/newFinance";
 	}
 	@RequestMapping(value = "/saveFinance", method = RequestMethod.POST)
 	public String saveFinances(@Valid @ModelAttribute("finance") Finance finance,Model model) {
@@ -44,7 +44,7 @@ public class FinanceController {
 		faculty.getFinaces().add(finance);
 		facultyService.save(faculty);
 		
-	    return "redirect:/";
+	    return "redirect:/Finance/viewFinance";
 	}
 
 }

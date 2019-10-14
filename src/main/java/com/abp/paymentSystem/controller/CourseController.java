@@ -21,19 +21,19 @@ public class CourseController {
 @Autowired private BranchService branchService;
 	
 	
-	@RequestMapping("/list-courses")
+	@RequestMapping("/Course/list-courses")
 	public String viewCourses(Model model) {
 	    List<Course> listCourses = (List<Course>) courseService.listAllCourses();
 	    model.addAttribute("listCourses", listCourses);
-	        return "list-courses";
+	        return "Course/list-courses";
 	}
 	
-	@RequestMapping("/register-course")
+	@RequestMapping("/Course/register-course")
 	public String showCourses(Model model) {
 		Course course = new Course();
 		    model.addAttribute("course", course);
 		    model.addAttribute("allBranches", branchService.listAllBranches());
-		return "register-course";
+		return "Course/register-course";
 	}
 	
 	
@@ -41,7 +41,7 @@ public class CourseController {
 	@RequestMapping(value = "/savecourse", method = RequestMethod.POST)
 	public String saveCourse(@ModelAttribute("course") Course course) {
 		courseService.saveCourse(course);
-	    return "redirect:/";
+	    return "redirect:/Course/list-courses";
 	}
 	
 	@RequestMapping("/deletecourse/{id}")

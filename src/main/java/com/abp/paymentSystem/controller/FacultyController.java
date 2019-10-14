@@ -18,42 +18,25 @@ public class FacultyController {
 
 	@Autowired
 	private FacultyService facultyService;
-	@RequestMapping("/viewFaculty")
+	@RequestMapping("/Faculty/viewFaculty")
 	public String indexOfFaculty(Model model) {
 		List<Faculty> allFaculties=(List<Faculty>)facultyService.listAll();
 		model.addAttribute("allFaculties",allFaculties);
-		return "viewFaculty";
+		return "Faculty/viewFaculty";
 	}
-	@RequestMapping("/newFaculty")
+	@RequestMapping("/Faculty/newFaculty")
 	public String createNewFaculty(Model model) {		
 		model.addAttribute("faculty",new Faculty());		
-		return "newFaculty";
+		return "Faculty/newFaculty";
 	}
 	@RequestMapping(value = "/saveFaculty", method = RequestMethod.POST)
 	public String saveFaculty(@ModelAttribute("faculty") Faculty faculty,Model model) {
 		facultyService.save(faculty);
-		return "viewFaculty";
+		return "redirect:/Faculty/viewFaculty";
 	}
 
 
 
-	
-	
-	@RequestMapping("/list_faculties")
-	public String viewFaculties(Model model) {
-	    List<Faculty> listFaculties = (List<Faculty>) facultyService.listAll();
-	    model.addAttribute("listFaculties", listFaculties);
-	        return "list_faculties";
-	}
-	
-	@RequestMapping("/register_faculty")
-	public String newFaculty(Model model) {
-		Faculty faculty = new Faculty();
-		    model.addAttribute("faculty", faculty);
-		return "register_faculty";
-	}
-	
-	
 	
 //	@RequestMapping(value = "/savefaculty", method = RequestMethod.POST)
 //	public String saveFaculty(@ModelAttribute("faculty") Faculty faculty) {
