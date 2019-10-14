@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.abp.paymentSystem.entity.Course;
+import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 
 @Controller
 public class CourseController {
 
 @Autowired private CourseService courseService;
+@Autowired private BranchService branchService;
 	
 	
 	@RequestMapping("/list-courses")
@@ -30,6 +32,7 @@ public class CourseController {
 	public String showCourses(Model model) {
 		Course course = new Course();
 		    model.addAttribute("course", course);
+		    model.addAttribute("allBranches", branchService.listAllBranches());
 		return "register-course";
 	}
 	

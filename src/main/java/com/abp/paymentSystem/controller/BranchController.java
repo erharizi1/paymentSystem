@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.abp.paymentSystem.entity.Branch;
 import com.abp.paymentSystem.service.BranchService;
+import com.abp.paymentSystem.service.FacultyService;
 
 @Controller
 public class BranchController {
 	
 	@Autowired private BranchService branchService;
+	@Autowired private FacultyService facultyService;
 	
 	@RequestMapping("/")
 	public String showform() {
@@ -39,6 +41,7 @@ public class BranchController {
 	public String showBranches(Model model) {
 		Branch branch = new Branch();
 		    model.addAttribute("branch", branch);
+		    model.addAttribute("allFaculties", facultyService.listAll());
 		return "register-form";
 	}
 	
@@ -47,7 +50,7 @@ public class BranchController {
 	@RequestMapping(value = "/savebranch", method = RequestMethod.POST)
 	public String saveBranches(@ModelAttribute("branch") Branch branch) {
 		branchService.saveBranch(branch);
-	    return "redirect:/";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/deletebranch/{id}")

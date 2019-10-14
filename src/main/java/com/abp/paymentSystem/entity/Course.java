@@ -2,8 +2,10 @@ package com.abp.paymentSystem.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,16 +29,14 @@ public class Course {
 	
 	@Column(name="price")
 	private String price;
+
 	
-	
-//	  @ManyToOne	  
-//	  @JoinColumn(name = "branch_id", referencedColumnName = "branch_id") private
-//	  Set<Branch> branch;
-//	 
-	
-	@ManyToOne
-	@JoinColumn(name = "branch_id")
+	@ManyToOne(fetch = FetchType.EAGER, optional = false,
+			cascade= {CascadeType.PERSIST,CascadeType.MERGE,
+					CascadeType.DETACH,CascadeType.REFRESH})
+	@JoinColumn(name="branch_id",nullable = false)
 	private Branch branch;
+	
 	@ManyToMany
 	@JoinTable(name="course_student",joinColumns=@JoinColumn(name="course_ID"),inverseJoinColumns=@JoinColumn(name="student_ID"))
 	private List<Student> students;
@@ -76,12 +76,12 @@ public class Course {
 	}
 
 
-	public String getprice() {
+	public String getPrice() {
 		return price;
 	}
 
 
-	public void setprice(String price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

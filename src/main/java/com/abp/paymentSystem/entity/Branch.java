@@ -1,7 +1,9 @@
 package com.abp.paymentSystem.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,8 +26,10 @@ public class Branch {
 	@Column(name="name")
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(nullable=false, name = "faculty_id")
+	@ManyToOne(fetch = FetchType.EAGER, optional = false,
+			cascade= {CascadeType.PERSIST,CascadeType.MERGE,
+					CascadeType.DETACH,CascadeType.REFRESH})
+	@JoinColumn(name="faculty_id",nullable = false)
 	private Faculty faculty;
 		
 	public Branch() {

@@ -23,7 +23,7 @@
             <tr th:each="branch: ${listBranches}">
                 <td th:text="${branch.id}">branch ID</td>
                 <td th:text="${branch.name}">Branch Name</td>
-                 <td th:text="${branch.faculty.id}">Faculty Id</td>
+                 <td th:text="${branch.faculty.name}">Faculty</td>
                 <td>                 
                   <a th:href="@{'/deletebranch/' + ${branch.id}}">Delete</a>    
                   <a th:href="@{'/editbranch/' + ${branch.id}}">Edit</a>          
