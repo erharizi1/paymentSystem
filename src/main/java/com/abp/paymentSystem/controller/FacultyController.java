@@ -32,7 +32,7 @@ public class FacultyController {
 	@RequestMapping(value = "/saveFaculty", method = RequestMethod.POST)
 	public String saveFaculty(@ModelAttribute("faculty") Faculty faculty,Model model) {
 		facultyService.save(faculty);
-		return"viewFaculty";
+		return "viewFaculty";
 	}
 
 
@@ -55,11 +55,11 @@ public class FacultyController {
 	
 	
 	
-	@RequestMapping(value = "/savefaculty", method = RequestMethod.POST)
-	public String saveFaculty(@ModelAttribute("faculty") Faculty faculty) {
-		facultyService.save(faculty);
-	    return "redirect:/";
-	}
+//	@RequestMapping(value = "/savefaculty", method = RequestMethod.POST)
+//	public String saveFaculty(@ModelAttribute("faculty") Faculty faculty) {
+//		facultyService.save(faculty);
+//	    return "redirect:/";
+//	}
 	
 	@RequestMapping("/deletefaculty/{id}")
 	public String deleteFaculty(@PathVariable(name = "id") long id) {

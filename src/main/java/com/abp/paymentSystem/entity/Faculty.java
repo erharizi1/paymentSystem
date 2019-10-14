@@ -16,8 +16,7 @@ import javax.persistence.OneToMany;
 public class Faculty {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-
-	private Long id;
+	private long id;
 
 	@Column(name="name")
 	private String name;
@@ -36,7 +35,7 @@ public class Faculty {
 	public Faculty() {
 		
 	}
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 	public void setId(Long id) {
