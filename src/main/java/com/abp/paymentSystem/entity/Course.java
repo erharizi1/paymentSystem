@@ -20,13 +20,13 @@ public class Course {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="course_id")
 	@OrderBy("id DESC")
-	private long courseId;
+	private long id;
 	
-	@Column(name="course_name")
-	private String courseName;
+	@Column(name="name")
+	private String name;
 	
-	@Column(name="course_price")
-	private String coursePrice;
+	@Column(name="price")
+	private String price;
 	
 	
 //	  @ManyToOne	  
@@ -56,33 +56,33 @@ public class Course {
 	}
 
 
-	public long getCourseId() {
-		return courseId;
+	public long getId() {
+		return id;
 	}
 
 
-	public void setCourseId(long courseId) {
-		this.courseId = courseId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
-	public String getCourseName() {
-		return courseName;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
-	public String getCoursePrice() {
-		return coursePrice;
+	public String getprice() {
+		return price;
 	}
 
 
-	public void setCoursePrice(String coursePrice) {
-		this.coursePrice = coursePrice;
+	public void setprice(String price) {
+		this.price = price;
 	}
 
 
@@ -96,9 +96,9 @@ public class Course {
 	}
 
 
-	public Course(String courseName, String coursePrice, Branch branch) {
-		this.courseName = courseName;
-		this.coursePrice = coursePrice;
+	public Course(String name, String price, Branch branch) {
+		this.name = name;
+		this.price = price;
 		this.branch = branch;
 	}
 

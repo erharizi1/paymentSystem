@@ -10,23 +10,24 @@ import javax.persistence.Id;
 public class Faculty {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="faculty_id")
-	private long facultyId;
-	@Column(name="faculty_name")
-	private String facultyName;
+	@Column(name="id")
+	private long id;
+	@Column(name="name")
+	private String name;
 	
 	public Faculty() {}
 	
-	public Faculty(String facultyName) {
-		this.facultyName = facultyName;
+	public Faculty(String name) {
+		this.name = name;
 	}
 
-	public long getFacultyId() {
-		return facultyId;
+	public long getId() {
+		return id;
 	}
-	public void setFacultyId(long facultyId) {
-		this.facultyId = facultyId;
+	public void setId(long id) {
+		this.id = id;
 	}
+<<<<<<< Updated upstream
 	public String getFacultyName() {
 		return facultyName;
 	}
@@ -37,9 +38,13 @@ public class Faculty {
 
 	public String getfacultyName() {
 		return facultyName;
+=======
+	public String getName() {
+		return name;
+>>>>>>> Stashed changes
 	}
-	public void setfacultyName(String facultyName) {
-		this.facultyName = facultyName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

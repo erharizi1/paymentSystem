@@ -16,8 +16,8 @@ import javax.persistence.ManyToOne;
 public class Student {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="student_id")
-	private long student_id;
+	@Column(name="id")
+	private long id;
 	
 	@Column(name="firstname")
 	private String firstname;
@@ -54,6 +54,7 @@ public class Student {
 	}
 
 
+<<<<<<< Updated upstream
 
 	
 
@@ -67,11 +68,15 @@ public class Student {
 
 	public long getStudent_id() {
 		return student_id;
+=======
+	public long getId() {
+		return id;
+>>>>>>> Stashed changes
 	}
 
 
-	public void setStudent_id(long student_id) {
-		this.student_id = student_id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
