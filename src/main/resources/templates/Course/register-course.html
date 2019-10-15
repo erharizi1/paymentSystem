@@ -11,6 +11,8 @@
         <br>
         <form action="#" th:action="@{/savecourse}" th:object="${course}"
             method="post">
+   
+   			 <input type="hidden" id="id" th:field="*{id}">
  
             <table>
                

@@ -11,6 +11,8 @@
         <br>
         <form action="#" th:action="@{/savebranch}" th:object="${branch}"
             method="post">
+            
+                            <input type="hidden" id="id" th:field="*{id}">
  
             <table>
                

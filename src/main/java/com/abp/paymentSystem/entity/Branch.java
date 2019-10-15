@@ -65,6 +65,4 @@ public class Branch {
 		this.faculty = faculty;
 	}
 
-	
-
 }

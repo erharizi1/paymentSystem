@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.abp.paymentSystem.entity.Branch;
 import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
@@ -49,5 +51,14 @@ public class CourseController {
 		courseService.deleteCourse(id);
 	    return "redirect:/";       
 	}
-
+	
+	@RequestMapping("/editcourse/{id}")
+    public String editCourse(@PathVariable(value = "id") int id, Model model) {
+                         
+		Course course = courseService.getCourse(id);
+		  model.addAttribute("course", course);
+		    model.addAttribute("allBranches", branchService.listAllBranches());
+        return "Course/register-course";
+    }
+	
 }

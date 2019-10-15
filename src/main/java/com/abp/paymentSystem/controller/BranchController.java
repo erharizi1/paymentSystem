@@ -1,6 +1,7 @@
 package com.abp.paymentSystem.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.abp.paymentSystem.entity.Branch;
 import com.abp.paymentSystem.service.BranchService;
@@ -52,5 +54,23 @@ public class BranchController {
 	    branchService.deleteBranch(id);
 	    return "redirect:/";       
 	}
+	
+//	@RequestMapping("/editbranch/{id}")
+//	public ModelAndView showEditBranchPage(@PathVariable(name = "id") int id) {
+//	    ModelAndView mav = new ModelAndView("edit-branch");
+//	    Branch branch = branchService.getBranch(id);
+//	    mav.addObject("branch", branch);
+//	     
+//	    return mav;
+//	}
+	
+	@RequestMapping("/editbranch/{id}")
+	    public String editBranch(@PathVariable(value = "id") int id, Model model) {
+	                         
+	        	 Branch branch = branchService.getBranch(id);
+	            model.addAttribute("branch", branch);
+	            model.addAttribute("allFaculties", facultyService.listAll());
+	        return "Branch/register-form";
+	    }
 
 }
