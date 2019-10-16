@@ -24,7 +24,7 @@ public class BranchController {
 	
 	@RequestMapping("/")
 	public String showform() {
-		return "index";
+		return "index2";
 	}
 	
 

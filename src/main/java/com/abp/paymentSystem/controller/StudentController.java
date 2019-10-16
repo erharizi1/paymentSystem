@@ -24,7 +24,7 @@ public class StudentController {
 	    List<Student> listStudents = (List<Student>) studentService.listAll();
 	    model.addAttribute("listStudents", listStudents);
 	        return "Student/list_students";
-	}
+	} 
 	
 	@RequestMapping("/Student/register_student")
 	public String newStudent(Model model) {
