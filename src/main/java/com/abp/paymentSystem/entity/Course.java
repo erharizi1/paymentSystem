@@ -20,7 +20,7 @@ public class Course {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="course_id")
+	@Column(name="id")
 	@OrderBy("id DESC")
 	private long id;
 	
@@ -37,7 +37,7 @@ public class Course {
 	@JoinColumn(name="branch_id",nullable = false)
 	private Branch branch;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="course_student",joinColumns=@JoinColumn(name="course_ID"),inverseJoinColumns=@JoinColumn(name="student_ID"))
 	private List<Student> students;
 	

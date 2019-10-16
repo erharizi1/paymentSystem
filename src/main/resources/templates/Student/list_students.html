@@ -77,34 +77,36 @@
 <div align="center" style="height: 75%;">
     <h1>Students List</h1>
    <a href="/Student/register_student">Create</a>
+   <a href="/Student/student-courses">Bind</a>
     <br/><br/>
     <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
+                
                 <th>Student First name</th>
                  <th>Student Last name</th>
                 <th>Student E-mail</th>
                 <th>Student Address</th>
-                <th>Student branch id</th>
-                <th>Student faculty id</th>
+                
+                <th>Student faculty </th>
+                <th>Student branch </th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="student: ${listStudents}">
-                <td th:text="${student.student_id}">Student ID</td>
-                <td th:text="${student.firstname}">Student FirstName</td>
-                <td th:text="${student.lastname}">Student LastName</td>
-                <td th:text="${student.email}">Student Email</td>
-                <td th:text="${student.addres}">Student Address</td>
-                <td th:text="${student.faculty.facultyId}">Faculty Id</td>
-                <td th:text="${student.branch.branchId}">Faculty Id</td>
-                <td>                 
+                
+                <td th:text="${student.firstname}"></td>
+                <td th:text="${student.lastname}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.addres}"></td>
+                <td th:text="${student.faculty.name}"></td>
+                <td th:text="${student.branch.name}"></td>
+                <!-- <td>                 
                   <a th:href="@{'/deletestudent/' + ${student.student_id}}">Delete</a>    
                   <a th:href="@{'/editstudent/' + ${student.student_id}}">Edit</a>          
-                </td>
+                </td> -->
             </tr>
-        </tbody>
+        </tbody> 
     </table>
 </div>  <hr> 
  <footer class="site-footer">
