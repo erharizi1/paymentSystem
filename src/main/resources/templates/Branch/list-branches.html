@@ -8,25 +8,25 @@
 <body>
 <div align="center">
     <h1>Branch List</h1>
-   
+   <a href="/Branch/register-form">Create</a>
     <br/><br/>
     <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Branch Name</th>
-                 <th>Faculty Id</th>
+                <th>Name</th>
+                 <th>Faculty</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="branch: ${listBranches}">
-                <td th:text="${branch.branchId}">branch ID</td>
-                <td th:text="${branch.branchName}">Branch Name</td>
-                 <td th:text="${branch.faculty.facultyId}">Faculty Id</td>
+                <td th:text="${branch.id}">branch ID</td>
+                <td th:text="${branch.name}">Branch Name</td>
+                 <td th:text="${branch.faculty.name}">Faculty</td>
                 <td>                 
-                  <a th:href="@{'/deletebranch/' + ${branch.branchId}}">Delete</a>    
-                  <a th:href="@{'/editbranch/' + ${branch.branchId}}">Edit</a>          
+                  <a th:href="@{'/deletebranch/' + ${branch.id}}">Delete</a>    
+                  <a th:href="@{'/editbranch/' + ${branch.id}}">Edit</a>          
                 </td>
             </tr>
         </tbody>

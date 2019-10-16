@@ -9,38 +9,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OrderBy;
+
 
 @Entity
-public class Branch {
-	
-//	@OneToMany(mappedBy="branch")
-//    private List<Course> course;
-
+public class Finance {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	@OrderBy("id DESC")
-	private long id;
-	
-	@Column(name="name")
+	private Long id;
 	private String name;
-	
+	private Long salary;
+	 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false,
-			cascade= {CascadeType.PERSIST,CascadeType.MERGE,
-					CascadeType.DETACH,CascadeType.REFRESH})
-	@JoinColumn(name="faculty_id",nullable = false)
-	private Faculty faculty;
-		
-	public Branch() {
+				cascade= {CascadeType.PERSIST,CascadeType.MERGE,
+						CascadeType.DETACH,CascadeType.REFRESH})
+    @JoinColumn(name="faculty_id",nullable = false)
+    private Faculty faculty;
+	
+	public Finance(String name, Long salary) {
+		super();
+		this.name = name;
+		this.salary = salary;
+	}
+	public Finance() {
 		
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -52,6 +51,14 @@ public class Branch {
 		this.name = name;
 	}
 
+	public Long getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Long salary) {
+		this.salary = salary;
+	}
+
 	public Faculty getFaculty() {
 		return faculty;
 	}
@@ -60,9 +67,9 @@ public class Branch {
 		this.faculty = faculty;
 	}
 
-	public Branch(String name, Faculty faculty) {
-		this.name = name;
-		this.faculty = faculty;
+	@Override
+	public String toString() {
+		return "Financa [id=" + id + ", name=" + name + ", salary=" + salary + "]";
 	}
 
 }

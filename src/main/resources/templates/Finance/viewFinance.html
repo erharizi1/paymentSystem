@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Finance Index</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<div align="center">
+
+    <h1>Branch List</h1>   
+    <br/><br/>
+    <a href="/Finance/newFinance" class="btn btn-success">Create</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Salary</th>
+                <th>Faculty</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="finance: ${allFinances}">
+                
+                <td th:text="${finance.name}"></td>
+                <td th:text="${finance.salary}"></td>
+                <td th:text="${finance.faculty.name}"></td>
+                <!-- <td>                 
+                  <a th:href="@{'/deletebranch/' + ${branch.branchId}}">Delete</a>    
+                  <a th:href="@{'/editbranch/' + ${branch.branchId}}">Edit</a>          
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>   
+</body>
+</html>

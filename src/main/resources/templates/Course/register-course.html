@@ -11,27 +11,28 @@
         <br>
         <form action="#" th:action="@{/savecourse}" th:object="${course}"
             method="post">
+   
+   			 <input type="hidden" id="id" th:field="*{id}">
  
             <table>
                
                 <tr>
                     <td>Course Name:</td>            
-                    <td><input type="text" th:field="*{courseName}" /></td>
+                    <td><input type="text" th:field="*{name}" /></td>
                 </tr>
                  <tr>                
                      <td>Course Price:</td>
-                    <td><input type="text" th:field="*{coursePrice}" /></td>
+                    <td><input type="text" th:field="*{price}" /></td>
                 </tr>
                  <tr>                
-                     <td>Branch Id:</td>
-                    <td><input type="text" th:field="*{branch}" /></td>
-                </tr>
-                
-                <tr>
-                    <td colspan="2"><button type="submit">Save</button> </td>
+                     <td>Branch :</td>  
+                     <td> <select th:field="*{branch}">
+					    <option th:each="b: ${allBranches}" th:value="${b.id}" th:text="${b.name}" />
+					  </select>        </td>   
                 </tr>
             </table>
             
+                    <button type="submit">Save</button> 
         </form>
     </div>
 </body>
