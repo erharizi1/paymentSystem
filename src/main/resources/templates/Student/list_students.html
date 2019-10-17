@@ -93,26 +93,18 @@
       </div>
     </section>
 <div align="center" style="height: 75%;">
-<<<<<<< Updated upstream
+
     <h1>Students List</h1>
-   <a href="/Student/register_student">Create</a>
    <a href="/Student/student-courses">Bind</a>
-=======
->>>>>>> Stashed changes
+
     <br/><br/>
     <table border="1">
         <thead>
             <tr>
-<<<<<<< Updated upstream
+
                 
-                <th>Student First name</th>
-                 <th>Student Last name</th>
-                <th>Student E-mail</th>
-                <th>Student Address</th>
-                
-                <th>Student faculty </th>
-                <th>Student branch </th>
-=======
+               
+
                 <th>ID</th>
                 <th>First name</th>
                  <th>Last name</th>
@@ -120,36 +112,25 @@
                 <th>Address</th>
                 <th>branch id</th>
                 <th>faculty id</th>
->>>>>>> Stashed changes
+
             </tr>
         </thead>
         <tbody>
             <tr th:each="student: ${listStudents}">
-<<<<<<< Updated upstream
+
                 
-                <td th:text="${student.firstname}"></td>
-                <td th:text="${student.lastname}"></td>
-                <td th:text="${student.email}"></td>
-                <td th:text="${student.addres}"></td>
-                <td th:text="${student.faculty.name}"></td>
-                <td th:text="${student.branch.name}"></td>
+                <td th:text="${student.id}"> </td>
+                <td th:text="${student.firstname}"> </td>
+                <td th:text="${student.lastname}"> </td>
+                <td th:text="${student.email}"> </td>
+                <td th:text="${student.addres}"> </td>
+                <td th:text="${student.faculty.id}"> </td>
+                <td th:text="${student.branch.id}"></td>
                 <!-- <td>                 
-                  <a th:href="@{'/deletestudent/' + ${student.student_id}}">Delete</a>    
-                  <a th:href="@{'/editstudent/' + ${student.student_id}}">Edit</a>          
-                </td> -->
-=======
-                <td th:text="${student.id}">Student ID</td>
-                <td th:text="${student.firstname}">Student FirstName</td>
-                <td th:text="${student.lastname}">Student LastName</td>
-                <td th:text="${student.email}">Student Email</td>
-                <td th:text="${student.addres}">Student Address</td>
-                <td th:text="${student.faculty.id}">Faculty Id</td>
-                <td th:text="${student.branch.id}">Faculty Id</td>
-                <td>                 
                   <a th:href="@{'/deletestudent/' + ${student.id}}">Delete</a>    
                   <a th:href="@{'/editstudent/' + ${student.id}}">Edit</a>          
-                </td>
->>>>>>> Stashed changes
+                </td> -->
+
             </tr>
         </tbody> 
     </table>
