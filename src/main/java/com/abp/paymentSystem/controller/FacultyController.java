@@ -44,11 +44,11 @@ public class FacultyController {
 //	    return "redirect:/";
 //	}
 	
-	@RequestMapping("/deletefaculty/{id}")
-	public String deleteFaculty(@PathVariable(name = "id") long id) {
-		facultyService.delete(id);
-	    return "redirect:/";       
-	}
+	
+	  @RequestMapping("/deletefaculty/{id}") public String
+	  deleteFaculty(@PathVariable(name = "id") long id) {
+	  facultyService.delete(id); return "redirect:/"; }
+	 
 
 	@RequestMapping(value="/detailsFaculty/{id}")
 	public String showDetailsFaculty(@PathVariable(name = "id") long id,Model model) {
