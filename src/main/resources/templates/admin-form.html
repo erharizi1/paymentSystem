@@ -1,0 +1,87 @@
+<! DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="../css/style2.css">
+<body>
+<div class="sidebar-container">
+  <div class="sidebar-logo">
+    System Admin
+  </div>
+  <ul class="sidebar-navigation">
+    <li class="header">Faculty</li>
+    <li>
+      <a href="/admin-form/addFacultyForm">
+        <i class="fa fa-home" aria-hidden="true"></i> Add Faculty
+      </a>
+    </li>
+    <li>
+     <a href="/admin-form/addBranch">
+        <i class="fa fa-tachometer" aria-hidden="true"></i> Add Branch
+      </a>
+    </li>
+    
+     <li>
+      <a href="#">
+        <i class="fa fa-tachometer" aria-hidden="true"></i> Add Course
+      </a>
+    </li>
+    <li class="header">Accountants</li>
+    <li>
+      <a href="#">
+        <i class="fa fa-users" aria-hidden="true"></i> New Accountant
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="fa fa-cog" aria-hidden="true"></i> Search Accountant
+      </a>
+    </li>
+     <li class="header">Students</li>
+    <li>
+      <a href="#">
+        <i class="fa fa-users" aria-hidden="true"></i> List of Students
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="content-container">
+
+  <div class="container-fluid">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <h1>Navbar example</h1>
+      <p> Admin Functionalities	</p>
+      
+      <p>
+        <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+      </p>
+      <div align="center" th:if="${showFacultyForm} == 1">
+        <h1>Add a new faculty</h1>
+        <br>
+        <form action="#" th:action="@{/admin-form/addFaculty}" th:object="${faculty}"  method="post">
+ 
+            <table>
+               
+                <tr>
+                    <td>Faculty Name:</td>            
+                         <td><input type="text" th:field="*{name}" /></td>
+                </tr>
+                 
+                
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+            
+        </form>
+</div>
+      <div th:if="${adminFunction2} == 2" style="width:50%;height:30px;background-color:blue">     
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
