@@ -37,14 +37,14 @@ public class FinanceController {
 		model.addAttribute("allFaculties",facultyService.listAll());
 		return "Finance/newFinance";
 	}
-	@RequestMapping(value = "/saveFinance", method = RequestMethod.POST)
-	public String saveFinances(@Valid @ModelAttribute("finance") Finance finance,Model model) {
-		financeService.saveFinance(finance);
-		Faculty faculty=facultyService.get(finance.getFaculty().getId());
-		faculty.getFinaces().add(finance);
-		facultyService.save(faculty);
-		
-	    return "redirect:/Finance/viewFinance";
-	}
+//	@RequestMapping(value = "/saveFinance", method = RequestMethod.POST)
+//	public String saveFinances(@Valid @ModelAttribute("finance") Finance finance,Model model) {
+//		financeService.saveFinance(finance);
+//		Faculty faculty=facultyService.get(finance.getFaculty().getId());
+//		faculty.getFinaces().add(finance);
+//		facultyService.save(faculty);
+//		
+//	    return "redirect:/Finance/viewFinance";
+//	}
 
 }

@@ -18,11 +18,11 @@
 					class="fa fa-tachometer" aria-hidden="true"></i> Add Course
 			</a></li>
 			<li class="header">Accountants</li>
-			<li><a href="#"> <i class="fa fa-users" aria-hidden="true"></i>
+			<li><a href="/admin-form/addFinanceForm"> <i class="fa fa-users" aria-hidden="true"></i>
 					New Accountant
 			</a></li>
-			<li><a href="/admin-form/addFinanceList"> <i class="fa fa-cog" aria-hidden="true"></i>
-					Search Accountant
+			<li><a href="/admin-form/addFinanceList"> <i
+					class="fa fa-cog" aria-hidden="true"></i> Search Accountant
 			</a></li>
 			<li class="header">Students</li>
 			<li><a href="/admin-form/addStudentList"> <i
@@ -49,7 +49,7 @@
 
 				<div align="center" th:if="${showFacultyForm} == 1">
 					<h1>Add a new faculty</h1>
-					<br>
+					<a href="/admin-form/addFacultyList">List of Faculties</a> <br>
 					<form action="#" th:action="@{/admin-form/addFaculty}"
 						th:object="${faculty}" method="post">
 
@@ -110,7 +110,7 @@
 
 				<div align="center" th:if="${showBranchForm} == 1">
 					<h1>Add New Branch</h1>
-					<br>
+					<a href="/admin-form/addBranchList">List of Branches</a> <br>
 					<form action="#" th:action="@{/admin-form/addBranch}"
 						th:object="${branch}" method="post">
 
@@ -165,13 +165,65 @@
 
 				</div>
 				<!-- END	SHOW  BRANCH -->
+
+<!-- ADD  FINANCE -->
+				
+					<div align="center" th:if="${showFinanceForm} == 1">
+              <h2 >Register new finance</h2>
+              <form action="#" th:action="@{/admin-form/addFinance}" th:object="${finance}" method="post">
+                  
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">Finance Name</label>
+                      <input type="text" th:field="*{name}" id="name" class="form-control py-2">
+                     </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">Finance Salary</label>
+                      <input type="text" th:field="*{salary}" id="name" class="form-control py-2">
+                     </div>
+                  </div>
+                   
+                   <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">Faculties</label>
+                      <select th:field="*{faculty}" id="name" class="form-control py-2">
+					    <option th:each="f: ${allFaculties}" th:value="${f.id}" th:text="${f.name}" />
+					  </select>
+                     </div>
+                  </div>
+                  
+                  <!-- <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">Password</label>
+                      <input type="password" id="name" class="form-control py-2 ">
+                    </div>
+                  </div>
+                  <div class="row mb-5">
+                    <div class="col-md-12 form-group">
+                      <label for="name">Re-type Password</label>
+                      <input type="password" id="name" class="form-control py-2">
+                    </div>
+                  </div> -->
+                  
+             
+                  
+                      <button type="submit" class="btn btn-primary px-5 py-2">Save</button> 
+                   
+         
+                </form>
+              </div>
+				
+				<!-- END ADD  FINANCE -->
 				
 				<!-- SHOW  FINANCE -->
 
 				<div align="center" th:if="${showFinancesList} == 1">
 					<h1>Finance List</h1>
-					<br />
-					<br />
+					<br /> <br />
 					<table border="1">
 						<thead>
 							<tr>
@@ -194,9 +246,9 @@
 						</tbody>
 					</table>
 				</div>
-				
+
 				<!-- END	SHOW  FINANCE -->
-				
+
 				<!-- 	SHOW  STUDENTS -->
 
 				<div align="center" th:if="${showStudentList} == 1">
@@ -238,14 +290,14 @@
 						</tbody>
 					</table>
 				</div>
-				
+
 				<!-- END	SHOW  STUDENTS -->
 
 				<!-- ADD A NEW COURSE -->
 
-				<!-- 				<div align="center" th:if="${showCourseForm} == 1"> -->
-				<!-- 					<h1>Add New Course</h1> -->
-				<!-- 					<br> -->
+				<!-- <div align="center" th:if="${showCourseForm} == 1">
+					<h1>Add New Course</h1>
+					<br> <a href="/admin-form/addCourseList">List of Courses</a> -->
 				<!-- 					<form action="#" th:action="@{/admin-form/addCourse}" -->
 				<!-- 						th:object="${course}" method="post"> -->
 
@@ -272,50 +324,52 @@
 
 				<!-- 						<button type="submit">Save</button> -->
 				<!-- 					</form> -->
-				<!-- 				</div> -->
-
-				<!-- 					END ADD A NEW COURSE -->
-
-				<!-- 				SHOW  COURSE -->
-
-				<!-- 				<div align="center" th:if="${showCourseList} == 1"> -->
-
-				<!-- 					<h1>Course List</h1> -->
-
-				<!-- 					<br /> -->
-				<!-- 					<table border="1"> -->
-				<!-- 						<thead> -->
-				<!-- 							<tr> -->
-				<!-- 								<th>ID</th> -->
-				<!-- 								<th>Name</th> -->
-				<!-- 								<th>Price</th> -->
-				<!-- 								<th>Branch</th> -->
-				<!-- 								<th>Actions</th> -->
-
-				<!-- 							</tr> -->
-				<!-- 						</thead> -->
-				<!-- 						<tbody> -->
-				<!-- 							<tr th:each="course: ${listCourses}"> -->
-				<!-- 								<td th:text="${course.Id}">ID</td> -->
-				<!-- 								<td th:text="${course.name}">Name</td> -->
-				<!-- 								<td th:text="${course.price}">Price</td> -->
-				<!-- 								<td th:text="${course.branch.name}">Branch</td> -->
-				<!-- <!-- 								<td><a th:href="@{'/deletecourse/' + ${course.id}}">Delete</a> -->
-				-->
-				<!-- <!-- 									<a th:href="@{'/editcourse/' + ${course.id}}">Edit</a></td> -->
-				-->
-				<!-- 							</tr> -->
-				<!-- 						</tbody> -->
-				<!-- 					</table> -->
-				<!-- 				</div> -->
-
-				<!-- 			END	SHOW  COURSE -->
-
-				<div th:if="${adminFunction2} == 2"
-					style="width: 50%; height: 30px; background-color: blue"></div>
 			</div>
 
+			<!-- 					END ADD A NEW COURSE -->
+
+			<!-- 			SHOW  COURSE -->
+
+			<!-- 				<div align="center" th:if="${showCourseList} == 1"> -->
+
+			<!-- 					<h1>Course List</h1> -->
+
+			<!-- 					<br /> -->
+			<!-- 					<table border="1"> -->
+			<!-- 						<thead> -->
+			<!-- 							<tr> -->
+			<!-- 								<th>ID</th> -->
+			<!-- 								<th>Name</th> -->
+			<!-- 								<th>Price</th> -->
+			<!-- 								<th>Branch</th> -->
+			<!-- 								<th>Actions</th> -->
+
+			<!-- 							</tr> -->
+			<!-- 						</thead> -->
+			<!-- 						<tbody> -->
+			<!-- 							<tr th:each="course: ${listCourses}"> -->
+			<!-- 								<td th:text="${course.Id}">ID</td> -->
+			<!-- 								<td th:text="${course.name}">Name</td> -->
+			<!-- 								<td th:text="${course.price}">Price</td> -->
+			<!-- 								<td th:text="${course.branch.name}">Branch</td> -->
+			<!-- 																<td><a th:href="@{'/deletecourse/' + ${course.id}}">Delete</a>
+<!-- 				 -->
+			-->
+			<!-- 																	<a th:href="@{'/editcourse/' + ${course.id}}">Edit</a></td>
+<!-- 				 -->
+			-->
+			<!-- 							</tr> -->
+			<!-- 						</tbody> -->
+			<!-- 					</table> -->
+			<!-- 				</div> -->
+
+			<!-- 			END	SHOW  COURSE -->
+
+			<div th:if="${adminFunction2} == 2"
+				style="width: 50%; height: 30px; background-color: blue"></div>
 		</div>
+
+	</div>
 	</div>
 </body>
 </html>

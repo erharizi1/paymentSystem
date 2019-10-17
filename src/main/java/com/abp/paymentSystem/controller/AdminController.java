@@ -2,6 +2,8 @@ package com.abp.paymentSystem.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,11 +90,13 @@ public class AdminController {
         return modelAndview;
 	}
 	
+	
 	@RequestMapping("/admin-form/addBranch")
 	public ModelAndView redirectSaveBranches(@ModelAttribute("branch") Branch branch,ModelMap model ) {
 		branchService.saveBranch(branch);
 		return new ModelAndView("forward:/admin-form", model);
 	}
+
 	
 	@GetMapping("/admin-form/addBranchList")
 	public ModelAndView redirectListBranches(Model model) {
@@ -126,6 +130,27 @@ public class AdminController {
 //	    model.addAttribute("showCourseList", 1);
 //	        return modelAndview;
 //	}
+	
+	@GetMapping("/admin-form/addFinanceForm")
+	 public ModelAndView redirectFinanceForm(Model model) {
+		ModelAndView modelAndview = new ModelAndView("admin-form");
+		Finance finance=new Finance();
+		model.addAttribute("finance",finance);
+		model.addAttribute("allFaculties",facultyService.listAll());
+		 model.addAttribute("showFinanceForm", 1);
+		return modelAndview;
+	}
+	
+	
+	@RequestMapping("/admin-form/addFinance")
+	public ModelAndView redirectSaveFinance(@ModelAttribute("finance") Finance finance,ModelMap model ) {
+		financeService.saveFinance(finance);
+		Faculty faculty=facultyService.get(finance.getFaculty().getId());
+		faculty.getFinaces().add(finance);
+		facultyService.save(faculty);
+		return new ModelAndView("forward:/admin-form", model);
+	}
+		
 	
 	@GetMapping("/admin-form/addFinanceList")
 	public ModelAndView indexOfFinance (Model model) {
