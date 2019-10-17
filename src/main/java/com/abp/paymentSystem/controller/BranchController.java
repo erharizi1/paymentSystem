@@ -26,6 +26,10 @@ public class BranchController {
 	public String showform() {
 		return "index2";
 	}
+	@RequestMapping("/about")
+	public String showaboutpage() {
+		return "about";
+	}
 	
 
 	@RequestMapping("/Branch/list-branches")

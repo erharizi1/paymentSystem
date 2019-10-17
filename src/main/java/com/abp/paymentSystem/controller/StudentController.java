@@ -40,11 +40,11 @@ public class StudentController {
 	        return "Student/list_students";
 	} 
 	
-	@RequestMapping("/Student/register_student")
+	@RequestMapping("/Student/register")
 	public String newStudent(Model model) {
 		Student student = new Student();
 		    model.addAttribute("student", student);
-		return "Student/register_student";
+		return "Student/register";
 	}
 	
 	

@@ -44,6 +44,10 @@ public class Student {
 	
 	public Student() {}
 	
+	public long getId() {
+		return id;
+	}
+
 	public Student(String firstname, String lastname, String email, String addres, Faculty faculty, Branch branch) {
 		super();
 		this.firstname = firstname;

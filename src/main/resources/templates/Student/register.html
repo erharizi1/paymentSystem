@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Free Education Template by Colorlib</title>
+    <title>Student List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -15,17 +15,17 @@
     <link rel="stylesheet" href="../fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="../fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="../css/style.css">
   </head>
-  <body>
-    
-    <header role="banner">
+<body>
+<header role="banner">
      
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand absolute" href="index.html">University</a>
+          <a class="navbar-brand absolute" href="/">University</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -33,10 +33,10 @@
           <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
+                <a class="nav-link active" href="/">Home</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="courses.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</a>
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="courses.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Faculties</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
                   <a class="dropdown-item" href="courses.html">HTML</a>
                   <a class="dropdown-item" href="courses.html">WordPress</a>
@@ -45,33 +45,32 @@
                   <a class="dropdown-item" href="courses.html">Python</a>
                 </div>
 
-              </li>
+              </li> -->
 
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown05">
-                  <a class="dropdown-item" href="#">HTML</a>
-                  <a class="dropdown-item" href="#">WordPress</a>
-                  <a class="dropdown-item" href="#">Laravel</a>
-                  <a class="dropdown-item" href="#">JavaScript</a>
-                  <a class="dropdown-item" href="#">Python</a>
-                </div>
-
+              <li class="nav-item">
+                <a class="nav-link" href="/Student/list_students">Student</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="blog.html">Blog</a>
+                <a class="nav-link" href="/Finance/viewFinance">Finance</a>
+              </li><li class="nav-item">
+                <a class="nav-link" href="/Faculty/viewFaculty">Faculty</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">Admin</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="/about">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="/contact">Contact</a>
               </li>
             </ul>
             <ul class="navbar-nav absolute-right">
               <li>
-                <a href="login.html">Login</a> / <a href="register.html">Register</a>
+                <a href="/login5">Login</a> / <a href="/Student/register">Register</a>
               </li>
+              
             </ul>
             
           </div>
@@ -101,7 +100,7 @@
         <div class="row justify-content-center">
           <div class="col-md-7">
             <div class="form-wrap">
-              <h2 class="mb-5">Register new account</h2>
+              <h2 class="mb-5">Register new student</h2>
               <form action="#" th:action="@{/savestudent}" th:object="${student}" method="post">
                   
                   <div class="row">
@@ -130,8 +129,20 @@
                       <input type="text" th:field="*{addres} "id="name" class="form-control py-2">
                      </div>
                   </div>
+                   <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">faculty id</label>
+                      <input type="text" th:field="*{faculty}" id="name" class="form-control py-2">
+                     </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">branch</label>
+                      <input type="text" th:field="*{branch} "id="name" class="form-control py-2">
+                     </div>
+                  </div>
                   
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-md-12 form-group">
                       <label for="name">Password</label>
                       <input type="password" id="name" class="form-control py-2 ">
@@ -142,11 +153,11 @@
                       <label for="name">Re-type Password</label>
                       <input type="password" id="name" class="form-control py-2">
                     </div>
-                  </div>
+                  </div> -->
                   
                   <div class="row">
                     <div class="col-md-6 form-group">
-                      <input type="submit" value="Register" class="btn btn-primary px-5 py-2">
+                      <button type="submit" class="btn btn-primary px-5 py-2">Save</button> 
                     </div>
                   </div>
                 </form>
