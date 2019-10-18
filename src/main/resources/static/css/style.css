@@ -307,6 +307,10 @@ header .navbar.navbar-light .nav-link.active {
 .site-section {
   padding: 5em 0;
 }
+.site-section1 {
+  padding: 1em 0;
+}
+ 
 
 .school-features,
 .school-instructors {
@@ -1980,6 +1984,16 @@ blockquote p {
   -webkit-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.2);
   margin-top: -100px;
+}
+.form-wrap1 {
+  position: relative;
+  margin-top: 1.5em;
+  z-index: 2;
+  padding: 20px;
+  background: #fff !important;
+  -webkit-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.2);
+ 
 }
 
 @media (min-width: 768px) {

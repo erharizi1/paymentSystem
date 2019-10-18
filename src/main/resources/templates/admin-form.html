@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Finance List</title>
+    <title>Admin form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -49,23 +49,28 @@
 
               </li> -->
 
+                  
+
               <li class="nav-item">
                 <a class="nav-link" href="/Student/list_students">Student</a>
               </li>
+               <li class="nav-item">
+                <a class="nav-link" href="/student-form">Student View</a>
+              </li>
               <li class="nav-item">
-                <a class="nav-link" href="/Finance/viewFinance">Finance</a>
+                <a class="nav-link" href="/acc-form">Finance</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/Faculty/viewFaculty">Faculty</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">Admin</a>
+                <a class="nav-link" href="/admin-form">Admin</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../about">About</a>
+                <a class="nav-link" href="/about">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../contact">Contact</a>
+                <a class="nav-link" href="/contact">Contact</a>
               </li>
             </ul>
             <ul class="navbar-nav absolute-right">
@@ -112,17 +117,8 @@
 	<div class="content-container">
 
 		<div class="container-fluid">
-
-			<!-- Main component for a primary marketing message or call to action -->
-			<div class="jumbotron">
-				<!-- <h1>Navbar example</h1>
-				<p>Admin Functionalities</p>
-
-				<p>
-					<a class="btn btn-lg btn-primary" href="../../components/#navbar"
-						role="button">View navbar docs &raquo;</a>
-				</p> -->
-
+			<!-- <div class="jumbotron"> -->
+<h1 align="center">Welcome to admin page</h1>
 
 
 
@@ -130,16 +126,16 @@
 
 
 				<!-- 	ADD A NEW FACULTY -->
-<section class="site-section">
+<section class="site-section1" >
       <div class="container" >
         <div class="row justify-content-center">
-          <div class="col-md-7">
-            <div class="form-wrap" th:if="${showFacultyForm} == 1">
+          <div class="col-md-7"  >
+            <div class="form-wrap1" th:if="${showFacultyForm} == 1">
               <h2 class="mb-5">Register a new faculty</h2>
               <a href="/admin-form/addFacultyList">List of Faculties</a> 
               <form action="#"  th:action="@{/admin-form/addFaculty}"
 						th:object="${faculty}" method="post">
-                  
+                  <input type="hidden" id="id" th:field="*{id}">
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label for="name">Faculty Name</label>
@@ -156,17 +152,14 @@
                   </div>
                 </form>
               </div>
-          </div>
-        </div>
-      </div>
-    </section> 
+          
 				<!-- 	END ADD A NEW FACULTY -->
 
 				<!-- 	SHOW FACULTY -->
 
-				<div class="form-wrap" align="center" style="margin-bottom:20px;"th:if="${showFacultyList} == 1">
+				<div class="form-wrap1" style=" height:500px;overflow: auto;"align="center"th:if="${showFacultyList} == 1">
 					
-					<h1>List faculties</h1>
+					<h1 class="mb-5">List faculties</h1>
 					<br>
 
 					<table border="1">
@@ -199,12 +192,10 @@
 
 				<!-- 	ADD A NEW BRANCH -->
  
-      <div class="container" >
-        <div class="row justify-content-center">
-          <div class="col-md-7">
+     
             
-				<div  class="form-wrap" th:if="${showBranchForm} == 1">
-					<h1>Add New Branch</h1>
+				<div  class="form-wrap1" th:if="${showBranchForm} == 1">
+					<h1 class="mb-5">Add New Branch</h1>
 					<a href="/admin-form/addBranchList">List of Branches</a> <br>
 					<form action="#" th:action="@{/admin-form/addBranch}"
 						th:object="${branch}" method="post">
@@ -235,17 +226,15 @@
                   </div>
 					</form>
 				</div>
-				</div>
-				</div>
-				</div>
+				
 				 
 				<!-- 	END ADD A NEW BRANCH -->
 
 				<!-- 	SHOW BRANCH -->
 
-				<div align="center" th:if="${showBranchList} == 1">
+				<div class="form-wrap1"style=" height:500px;overflow: auto;" align="center" th:if="${showBranchList} == 1">
 
-					<h1>List Branch</h1>
+					<h1 class="mb-5">List Branch</h1>
 					<br>
 
 					<table border="1">
@@ -273,11 +262,11 @@
 
 				<!-- ADD  FINANCE -->
 
-				<div align="center" th:if="${showFinanceForm} == 1">
-					<h2>Register new finance</h2>
+				<div class="form-wrap1" th:if="${showFinanceForm} == 1">
+					<h2 class="mb-5">Register new finance</h2>
 					<form action="#" th:action="@{/admin-form/addFinance}"
 						th:object="${finance}" method="post">
-
+						<input type="hidden" id="id" th:field="*{id}">
 						<div class="row">
 							<div class="col-md-12 form-group">
 								<label for="name">Finance Name</label> <input type="text"
@@ -301,24 +290,9 @@
 										th:text="${f.name}" />
 								</select>
 							</div>
-						</div>
+						</div> 
 
-						<!-- <div class="row">
-                    <div class="col-md-12 form-group">
-                      <label for="name">Password</label>
-                      <input type="password" id="name" class="form-control py-2 ">
-                    </div>
-                  </div>
-                  <div class="row mb-5">
-                    <div class="col-md-12 form-group">
-                      <label for="name">Re-type Password</label>
-                      <input type="password" id="name" class="form-control py-2">
-                    </div>
-                  </div> -->
-
-
-
-						<button type="submit" class="btn btn-primary px-5 py-2">Save</button>
+ 						<button type="submit" class="btn btn-primary px-5 py-2">Save</button>
 
 
 					</form>
@@ -328,8 +302,8 @@
 
 				<!-- SHOW  FINANCE -->
 
-				<div align="center" th:if="${showFinancesList} == 1">
-					<h1>Finance List</h1>
+				<div class="form-wrap1" style=" height:500px;overflow: auto;" align="center" th:if="${showFinancesList} == 1">
+					<h1 class="mb-5">Finance List</h1>
 					<br /> <br />
 					<table border="1">
 						<thead>
@@ -353,14 +327,14 @@
 						</tbody>
 					</table>
 				</div>
-
+ 		
 				<!-- END	SHOW  FINANCE -->
 
 				<!-- 	SHOW  STUDENTS -->
 
-				<div align="center" th:if="${showStudentList} == 1">
+				<div class="form-wrap1" style=" height:500px;overflow: auto;" align="center" th:if="${showStudentList} == 1">
 
-					<h1>Students List</h1>
+					<h1 class="mb-5">Students List</h1>
 
 					<br />
 					<table border="1">
@@ -402,34 +376,39 @@
 
 				<!-- 	ADD A NEW COURSE -->
 
-				<div align="center" th:if="${showCourseForm} == 1"> 
-					<h1>Add New Course</h1>
+				<div class="form-wrap1" th:if="${showCourseForm} == 1"> 
+					<h1 class="mb-5">Add New Course</h1>
 					<br> <a href="/admin-form/addCourseList">List of Courses</a>
 					<form action="#" th:action="@{/admin-form/addCourse}"
 						th:object="${course}" method="post">
 
 						<input type="hidden" id="id" th:field="*{id}">
+						
+						
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="name">Course Name:</label> <input type="text"
+									th:field="*{name}" id="name" class="form-control py-2">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="name">Course Price:</label> <input type="text"
+									th:field="*{price}" id="name" class="form-control py-2">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="name">Branch </label> <select
+									th:field="*{branch}" id="name" class="form-control py-2">
+									<option th:each="b: ${allBranches}" th:value="${b.id}"
+										th:text="${b.name}" />
+								</select>
+							</div>
+						</div> 
+						 
 
-						<table>
-
-							<tr>
-								<td>Course Name:</td>
-								<td><input type="text" th:field="*{name}" /></td>
-							</tr>
-							<tr>
-								<td>Course Price:</td>
-								<td><input type="text" th:field="*{price}" /></td>
-							</tr>
-							<tr>
-								<td>Branch :</td>
-								<td><select th:field="*{branch}">
-										<option th:each="b: ${allBranches}" th:value="${b.id}"
-											th:text="${b.name}" />
-								</select></td>
-							</tr>
-						</table>
-
-						<button type="submit">Save</button>
+						<button type="submit" class="btn btn-primary px-5 py-2">Save</button>
 					</form>
 				</div> 
 
@@ -437,9 +416,9 @@
 
 				<!-- 	SHOW  COURSE -->
 
-				<div align="center" th:if="${showCourseList} == 1">
+				<div class="form-wrap1" style=" height:500px;overflow: auto;" align="center" th:if="${showCourseList} == 1">
 
-					<h1>Course List</h1>
+					<h1 class="mb-5">Course List</h1>
 
 					<br />
 					<table border="1">
@@ -473,7 +452,11 @@
 
 
 
-		</div>
-	</div>
+				</div>
+			</div>
+        </div>
+      </div>
+    </section>
+	<!-- </div> -->
 </body>
 </html>
