@@ -1,0 +1,234 @@
+<! DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="../css/style2.css">
+<body>
+	<div class="sidebar-container">
+		<div class="sidebar-logo">Branch Accountant</div>
+		<ul class="sidebar-navigation">
+			<li class="header">Faculty</li>
+			<li><a href="/acc-form/addFacultyList"> <i
+					class="fa fa-home" aria-hidden="true"></i> Faculty List
+			</a></li>
+			<li><a href="/acc-form/addBranchList"> <i
+					class="fa fa-tachometer" aria-hidden="true"></i> Branch List
+			</a></li>
+
+			<li><a href="/acc-form/addCourseForm"> <i
+					class="fa fa-tachometer" aria-hidden="true"></i> Add Course
+			</a></li>
+			<li><a href="/acc-form/addCourseList"> <i
+					class="fa fa-tachometer" aria-hidden="true"></i> Course List
+			</a></li>
+			<li class="header">Students</li>
+			<li><a href="/acc-form/addStudentList"> <i
+					class="fa fa-users" aria-hidden="true"></i> List of Students
+			</a></li>
+		</ul>
+	</div>
+
+	<div class="content-container">
+
+		<div class="container-fluid">
+
+			<!-- Main component for a primary marketing message or call to action -->
+			<div class="jumbotron">
+				<h1>Navbar example</h1>
+				<p>Branch Accountant</p>
+
+				<p>
+					<a class="btn btn-lg btn-primary" href="../../components/#navbar"
+						role="button">View navbar docs &raquo;</a>
+				</p>
+
+
+
+				<!-- 	SHOW FACULTY -->
+
+				<div align="center" th:if="${showFacultyList} == 1">
+
+					<h1>List faculties</h1>
+					<br>
+
+					<table border="1">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Faculties</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="faculty: ${allFaculties}">
+
+								<td th:text="${faculty.name}"></td>
+								<td>
+									<ul th:each="finances:${faculty.finaces}">
+										<li th:text="${finances.name}"></li>
+									</ul>
+								</td>
+								<td>
+									<!--                   <a th:href="@{'/deletefaculty/' + ${faculty.Id}}">Delete</a>     -->
+									<!--                   <a th:href="@{'/editfaculty/' + ${faculty.Id}}">Edit</a>           -->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<!-- END	SHOW FACULTY -->
+
+
+
+				<!-- 	SHOW BRANCH -->
+
+				<div align="center" th:if="${showBranchList} == 1">
+
+					<h1>List Branch</h1>
+					<br>
+
+					<table border="1">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Faculty</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="branch: ${listBranches}">
+								<td th:text="${branch.id}">branch ID</td>
+								<td th:text="${branch.name}">Branch Name</td>
+								<td th:text="${branch.faculty.name}">Faculty</td>
+								<!-- 								<td><a th:href="@{'/deletebranch/' + ${branch.id}}">Delete</a> -->
+								<!-- 									<a th:href="@{'/editbranch/' + ${branch.id}}">Edit</a></td> -->
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<!-- END	SHOW  BRANCH -->
+
+
+				<!-- 	SHOW  STUDENTS -->
+
+				<div align="center" th:if="${showStudentList} == 1">
+
+					<h1>Students List</h1>
+
+					<br />
+					<table border="1">
+						<thead>
+							<tr>
+
+								<th>ID</th>
+								<th>First name</th>
+								<th>Last name</th>
+								<th>E-mail</th>
+								<th>Address</th>
+								<th>branch id</th>
+								<th>faculty id</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="student: ${listStudents}">
+
+
+								<td th:text="${student.id}"></td>
+								<td th:text="${student.firstname}"></td>
+								<td th:text="${student.lastname}"></td>
+								<td th:text="${student.email}"></td>
+								<td th:text="${student.addres}"></td>
+								<td th:text="${student.faculty.id}"></td>
+								<td th:text="${student.branch.id}"></td>
+								<!-- <td>                 
+                  <a th:href="@{'/deletestudent/' + ${student.id}}">Delete</a>    
+                  <a th:href="@{'/editstudent/' + ${student.id}}">Edit</a>          
+                </td> -->
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- END	SHOW  STUDENTS -->
+
+				<!-- ADD A NEW COURSE -->
+
+				<div align="center" th:if="${showCourseForm} == 1">
+					<h1>Add New Course</h1>
+					<br> <a href="/admin-form/addCourseList">List of Courses</a>
+									<form action="#" th:action="@{/admin-form/addCourse}"
+										th:object="${course}" method="post">
+
+										<input type="hidden" id="id" th:field="*{id}">
+
+										<table>
+
+											<tr>
+												<td>Course Name:</td>
+												<td><input type="text" th:field="*{name}" /></td>
+											</tr>
+											<tr>
+												<td>Course Price:</td>
+												<td><input type="text" th:field="*{price}" /></td>
+											</tr>
+											<tr>
+												<td>Branch :</td>
+												<td><select th:field="*{branch}">
+														<option th:each="b: ${allBranches}" th:value="${b.id}"
+															th:text="${b.name}" />
+												</select></td>
+											</tr>
+										</table>
+
+										<button type="submit">Save</button>
+									</form>
+			</div>
+
+			<!-- 					END ADD A NEW COURSE -->
+
+			<!-- 			SHOW  COURSE -->
+
+							<div align="center" th:if="${showCourseList} == 1">
+
+								<h1>Course List</h1>
+
+								<br />
+								<table border="1">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Price</th>
+											<th>Branch</th>
+											<th>Actions</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="course: ${listCourses}">
+											<td th:text="${course.Id}">ID</td>
+											<td th:text="${course.name}">Name</td>
+											<td th:text="${course.price}">Price</td>
+											<td th:text="${course.branch.name}">Branch</td>
+											<!-- 	<td><a th:href="@{'/deletecourse/' + ${course.id}}">Delete</a> -->
+											<!-- <a th:href="@{'/editcourse/' + ${course.id}}">Edit</a></td> -->
+		
+			
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+			<!-- 			END	SHOW  COURSE -->
+
+			
+		</div>
+
+	</div>
+
+</body>
+</html>

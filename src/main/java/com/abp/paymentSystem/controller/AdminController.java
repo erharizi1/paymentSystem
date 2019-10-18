@@ -107,29 +107,29 @@ public class AdminController {
 	        return modelAndview;
 	}
 	
-//	@GetMapping("/admin-form/addCourseForm")
-//    public ModelAndView redirectCourseForm(Model model) {
-//		ModelAndView modelAndview = new ModelAndView("admin-form");
-//		model.addAttribute("course", new Branch());
-//		model.addAttribute("allFaculties", courseService.listAllCourses());
-//        model.addAttribute("showBranchForm", 1);
-//        return modelAndview;
-//	}
-//	
-//	@RequestMapping("/admin-form/addCourse")
-//	public ModelAndView redirectSaveCourses(@ModelAttribute("course") Course course,ModelMap model ) {
-//		courseService.saveCourse(course);
-//		return new ModelAndView("forward:/admin-form", model);
-//	}
-//	
-//	@GetMapping("/admin-form/addCourseList")
-//	public ModelAndView redirectListCourses(Model model) {
-//		ModelAndView modelAndview = new ModelAndView("admin-form");
-//	    List<Course> listCourses = (List<Course>) courseService.listAllCourses();
-//	    model.addAttribute("listCourses", listCourses);
-//	    model.addAttribute("showCourseList", 1);
-//	        return modelAndview;
-//	}
+	@GetMapping("/admin-form/addCourseForm")
+	  public ModelAndView redirectCourseForm(Model model) {
+			ModelAndView modelAndview = new ModelAndView("acc-form");
+			model.addAttribute("course", new Course());
+			model.addAttribute("allBranches", branchService.listAllBranches());
+	      model.addAttribute("showCourseForm", 1);
+	      return modelAndview;
+		}
+	
+	@RequestMapping("/admin-form/addCourse")
+	public ModelAndView redirectSaveCourses(@ModelAttribute("course") Course course,ModelMap model ) {
+		courseService.saveCourse(course);
+		return new ModelAndView("forward:/admin-form", model);
+	}
+	
+	@GetMapping("/admin-form/addCourseList")
+	public ModelAndView redirectListCourses(Model model) {
+		ModelAndView modelAndview = new ModelAndView("admin-form");
+	    List<Course> listCourses = (List<Course>) courseService.listAllCourses();
+	    model.addAttribute("listCourses", listCourses);
+	    model.addAttribute("showCourseList", 1);
+	        return modelAndview;
+	}
 	
 	@GetMapping("/admin-form/addFinanceForm")
 	 public ModelAndView redirectFinanceForm(Model model) {
