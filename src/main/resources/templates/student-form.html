@@ -1,0 +1,116 @@
+<! DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="../css/style2.css">
+<body>
+	<div class="sidebar-container">
+		<div class="sidebar-logo">Student</div>
+		<ul class="sidebar-navigation">
+			<li class="header">My Courses</li>
+			
+			<li><a href="/student-form/addCourseList"> <i
+					class="fa fa-tachometer" aria-hidden="true"></i> Course List
+			</a></li>
+			<li class="header">My details</li>
+			<li><a href="/student-form/addStudentList"> <i
+					class="fa fa-users" aria-hidden="true"></i> List of Students
+			</a></li>
+		</ul>
+	</div>
+
+	<div class="content-container">
+
+		<div class="container-fluid">
+
+			<!-- Main component for a primary marketing message or call to action -->
+			<div class="jumbotron">
+				<h1>Navbar example</h1>
+				<p>My account</p>
+
+				<!-- 	SHOW  STUDENTS -->
+
+				<div align="center" th:if="${showMyStudentList} == 1">
+
+					<h1>Students List</h1>
+
+					<br />
+					<table border="1">
+						<thead>
+							<tr>
+
+								<th>ID</th>
+								<th>First name</th>
+								<th>Last name</th>
+								<th>E-mail</th>
+								<th>Address</th>
+								<th>branch id</th>
+								<th>faculty id</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="student: ${listStudents}">
+
+
+								<td th:text="${student.id}"></td>
+								<td th:text="${student.firstname}"></td>
+								<td th:text="${student.lastname}"></td>
+								<td th:text="${student.email}"></td>
+								<td th:text="${student.addres}"></td>
+								<td th:text="${student.faculty.id}"></td>
+								<td th:text="${student.branch.id}"></td>
+								<!-- <td>                 
+                  <a th:href="@{'/deletestudent/' + ${student.id}}">Delete</a>    
+                  <a th:href="@{'/editstudent/' + ${student.id}}">Edit</a>          
+                </td> -->
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- END	SHOW  STUDENTS -->
+
+			
+
+			<!-- 			SHOW  COURSE -->
+
+							<div align="center" th:if="${showMyCourseList} == 1">
+
+								<h1>Course List</h1>
+
+								<br />
+								<table border="1">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Price</th>
+											<th>Branch</th>
+											<th>Actions</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="course: ${listCourses}">
+											<td th:text="${course.Id}">ID</td>
+											<td th:text="${course.name}">Name</td>
+											<td th:text="${course.price}">Price</td>
+											<td th:text="${course.branch.name}">Branch</td>
+											<!-- 	<td><a th:href="@{'/deletecourse/' + ${course.id}}">Delete</a> -->
+											<!-- <a th:href="@{'/editcourse/' + ${course.id}}">Edit</a></td> -->
+		
+			
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+			<!-- 			END	SHOW  COURSE -->
+		
+		</div>
+
+	</div>
+(</div>)
+</body>
+</html>

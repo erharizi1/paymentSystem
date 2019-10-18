@@ -109,7 +109,7 @@ public class AdminController {
 	
 	@GetMapping("/admin-form/addCourseForm")
 	  public ModelAndView redirectCourseForm(Model model) {
-			ModelAndView modelAndview = new ModelAndView("acc-form");
+			ModelAndView modelAndview = new ModelAndView("admin-form");
 			model.addAttribute("course", new Course());
 			model.addAttribute("allBranches", branchService.listAllBranches());
 	      model.addAttribute("showCourseForm", 1);

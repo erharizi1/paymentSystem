@@ -33,7 +33,7 @@ public class AccountantController {
 	StudentService studentService;
 	
 	@RequestMapping("/acc-form")
-	public String showadmin(Model model) {
+	public String showadmin() {
 		return "acc-form";
 	}
 	
@@ -84,7 +84,7 @@ public class AccountantController {
 		ModelAndView modelAndview = new ModelAndView("acc-form");
 	    List<Student> listStudents = studentService.listAll();
 	    model.addAttribute("listStudents", listStudents);
-	    model.addAttribute("showStudentList", 1);
+	    model.addAttribute("showStudentDetails", 1);
 	        return modelAndview;
 	} 
 
