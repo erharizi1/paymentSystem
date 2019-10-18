@@ -1,32 +1,110 @@
 <! DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Finance List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+
 <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="../fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
 <body>
+<header role="banner">
+     
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand absolute" href="/">University</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+              </li>
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="courses.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Faculties</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="courses.html">HTML</a>
+                  <a class="dropdown-item" href="courses.html">WordPress</a>
+                  <a class="dropdown-item" href="courses.html">Laravel</a>
+                  <a class="dropdown-item" href="courses.html">JavaScript</a>
+                  <a class="dropdown-item" href="courses.html">Python</a>
+                </div>
+
+              </li> -->
+
+              <li class="nav-item">
+                <a class="nav-link" href="/Student/list_students">Student</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Finance/viewFinance">Finance</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Faculty/viewFaculty">Faculty</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">Admin</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../contact">Contact</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav absolute-right">
+              <li>
+                <a href="/login5">Login</a> / <a href="/Student/register">Register</a>
+              </li>
+              
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+    </header>
 	<div class="sidebar-container">
 		<div class="sidebar-logo">System Admin</div>
 		<ul class="sidebar-navigation">
 			<li class="header">Faculty</li>
 			<li><a href="/admin-form/addFacultyForm"> <i
-					class="fa fa-home" aria-hidden="true"></i> Add Faculty
+					class="fa fa-plus" aria-hidden="true"></i> Add Faculty
 			</a></li>
 			<li><a href="/admin-form/addBranchForm"> <i
-					class="fa fa-tachometer" aria-hidden="true"></i> Add Branch
+					class="fa fa-plus" aria-hidden="true"></i> Add Branch
 			</a></li>
 
 			<li><a href="/admin-form/addCourseForm"> <i
-					class="fa fa-tachometer" aria-hidden="true"></i> Add Course
+					class="fa fa-plus" aria-hidden="true"></i> Add Course
 			</a></li>
 			<li class="header">Accountants</li>
-			<li><a href="/admin-form/addFinanceForm"> <i
-					class="fa fa-users" aria-hidden="true"></i> New Accountant
+
+			<li><a href="/admin-form/addFinanceForm"> <i class="fa fa-user" aria-hidden="true"></i>
+					New Accountant
+
 			</a></li>
 			<li><a href="/admin-form/addFinanceList"> <i
-					class="fa fa-cog" aria-hidden="true"></i> Search Accountant
+					class="fa fa-search" aria-hidden="true"></i> Search Accountant
 			</a></li>
 			<li class="header">Students</li>
 			<li><a href="/admin-form/addStudentList"> <i
-					class="fa fa-users" aria-hidden="true"></i> List of Students
+					class="fa fa-list-ul" aria-hidden="true"></i> List of Students
 			</a></li>
 		</ul>
 	</div>
@@ -37,44 +115,57 @@
 
 			<!-- Main component for a primary marketing message or call to action -->
 			<div class="jumbotron">
-				<h1>Navbar example</h1>
+				<!-- <h1>Navbar example</h1>
 				<p>Admin Functionalities</p>
 
 				<p>
 					<a class="btn btn-lg btn-primary" href="../../components/#navbar"
 						role="button">View navbar docs &raquo;</a>
-				</p>
+				</p> -->
+
+
+
+
+
+
 
 				<!-- 	ADD A NEW FACULTY -->
-
-				<div align="center" th:if="${showFacultyForm} == 1">
-					<h1>Add a new faculty</h1>
-					<a href="/admin-form/addFacultyList">List of Faculties</a> <br>
-					<form action="#" th:action="@{/admin-form/addFaculty}"
+<section class="site-section">
+      <div class="container" >
+        <div class="row justify-content-center">
+          <div class="col-md-7">
+            <div class="form-wrap" th:if="${showFacultyForm} == 1">
+              <h2 class="mb-5">Register a new faculty</h2>
+              <a href="/admin-form/addFacultyList">List of Faculties</a> 
+              <form action="#"  th:action="@{/admin-form/addFaculty}"
 						th:object="${faculty}" method="post">
-
-						<table>
-
-							<tr>
-								<td>Faculty Name:</td>
-								<td><input type="text" th:field="*{name}" /></td>
-							</tr>
-
-
-							<tr>
-								<td colspan="2"><button type="submit">Save</button></td>
-							</tr>
-						</table>
-
-					</form>
-				</div>
-
+                  
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">Faculty Name</label>
+                      <input type="text" th:field="*{name}" id="name" class="form-control py-2">
+                     </div>
+                  </div>
+                  
+                   
+                  
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <button type="submit" class="btn btn-primary px-5 py-2">Save</button> 
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section> 
 				<!-- 	END ADD A NEW FACULTY -->
 
 				<!-- 	SHOW FACULTY -->
 
-				<div align="center" th:if="${showFacultyList} == 1">
-
+				<div class="form-wrap" align="center" style="margin-bottom:20px;"th:if="${showFacultyList} == 1">
+					
 					<h1>List faculties</h1>
 					<br>
 
@@ -82,7 +173,7 @@
 						<thead>
 							<tr>
 								<th>Name</th>
-								<th>Faculties</th>
+								<th>Finance Employee</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -102,13 +193,17 @@
 							</tr>
 						</tbody>
 					</table>
-
-				</div>
+					</div>
+					
 				<!-- END	SHOW FACULTY -->
 
 				<!-- 	ADD A NEW BRANCH -->
-
-				<div align="center" th:if="${showBranchForm} == 1">
+ 
+      <div class="container" >
+        <div class="row justify-content-center">
+          <div class="col-md-7">
+            
+				<div  class="form-wrap" th:if="${showBranchForm} == 1">
 					<h1>Add New Branch</h1>
 					<a href="/admin-form/addBranchList">List of Branches</a> <br>
 					<form action="#" th:action="@{/admin-form/addBranch}"
@@ -116,24 +211,34 @@
 
 						<input type="hidden" id="id" th:field="*{id}">
 
-						<table>
-
-							<tr>
-								<td>Name:</td>
-								<td><input type="text" th:field="*{name}" /></td>
-							</tr>
-							<tr>
-								<td>Faculty Id:</td>
-								<td><select th:field="*{faculty}">
+						
+				<div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">Name</label>
+                      <input type="text" th:field="*{name}" id="name" class="form-control py-2">
+                     </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="name">Faculty id</label>
+                      <select id="name" class="form-control py-2" th:field="*{faculty}">
 										<option th:each="f: ${allFaculties}" th:value="${f.id}"
 											th:text="${f.name}" />
-								</select></td>
-							</tr>
-						</table>
-
-						<button type="submit">Save</button>
+					  </select>
+                       
+                     </div>
+                  </div> 
+					<div class="row">
+                    <div class="col-md-6 form-group">
+                      <button type="submit" class="btn btn-primary px-5 py-2">Save</button> 
+                    </div>
+                  </div>
 					</form>
 				</div>
+				</div>
+				</div>
+				</div>
+				 
 				<!-- 	END ADD A NEW BRANCH -->
 
 				<!-- 	SHOW BRANCH -->
@@ -365,6 +470,49 @@
 				<!-- 	END	SHOW  COURSE -->
 
 			</div>
+
+
+			<!-- 					END ADD A NEW COURSE -->
+
+			<!-- 			SHOW  COURSE -->
+
+			<!-- 				<div align="center" th:if="${showCourseList} == 1"> -->
+
+			<!-- 					<h1>Course List</h1> -->
+
+			<!-- 					<br /> -->
+			<!-- 					<table border="1"> -->
+			<!-- 						<thead> -->
+			<!-- 							<tr> -->
+			<!-- 								<th>ID</th> -->
+			<!-- 								<th>Name</th> -->
+			<!-- 								<th>Price</th> -->
+			<!-- 								<th>Branch</th> -->
+			<!-- 								<th>Actions</th> -->
+
+			<!-- 							</tr> -->
+			<!-- 						</thead> -->
+			<!-- 						<tbody> -->
+			<!-- 							<tr th:each="course: ${listCourses}"> -->
+			<!-- 								<td th:text="${course.Id}">ID</td> -->
+			<!-- 								<td th:text="${course.name}">Name</td> -->
+			<!-- 								<td th:text="${course.price}">Price</td> -->
+			<!-- 								<td th:text="${course.branch.name}">Branch</td> -->
+			<!-- 																<td><a th:href="@{'/deletecourse/' + ${course.id}}">Delete</a>
+<!-- 				 -->
+			
+			<!-- 																	<a th:href="@{'/editcourse/' + ${course.id}}">Edit</a></td>
+<!-- 				 -->
+			
+			<!-- 							</tr> -->
+			<!-- 						</tbody> -->
+			<!-- 					</table> -->
+			<!-- 				</div> -->
+
+			<!-- 			END	SHOW  COURSE -->
+
+			<div th:if="${adminFunction2} == 2"
+				style="width: 50%; height: 30px; background-color: blue"></div>
 
 		</div>
 	</div>
