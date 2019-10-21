@@ -12,9 +12,9 @@ public class TestController {
 	public String showContactpage() {
 		return "contact";
 	}
-	@RequestMapping("/login5")
-		public String showLoginpage() {
-			return "login5";
-		}
+//	@RequestMapping("/login5")
+//		public String showLoginpage() {
+//			return "login5";
+//		}
 	
 }

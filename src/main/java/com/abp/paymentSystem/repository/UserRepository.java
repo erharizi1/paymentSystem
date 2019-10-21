@@ -1,12 +1,14 @@
 package com.abp.paymentSystem.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.abp.paymentSystem.entity.User;
+@Repository
+public interface UserRepository extends JpaRepository<User, Long>{
 
-public interface UserRepository extends CrudRepository<User, Long> {
-
-	User findByEmail(String email);
+	Optional<User> findByName(String username);
 	
-	User findById(int id);
 }

@@ -31,7 +31,7 @@ public class User {
 	@Column( nullable=false )
 	private String password;
 	
-	private String firstname;
+	private String name;
 	
 	private String lastname;
 	
@@ -48,6 +48,15 @@ public class User {
 		inverseJoinColumns = {@JoinColumn(name="role_id")}  
 	)
 	private Set<Role> role ;
+	
+
+	public Set<Role> getRole() {
+		return role;
+	}
+
+	public void setRole(Set<Role> role) {
+		this.role = role;
+	}
 
 	public int getId() {
 		return id;
@@ -73,12 +82,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setName(String firstname) {
+		this.name = firstname;
 	}
 
 	public String getLastname() {
@@ -87,6 +96,21 @@ public class User {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
-	}  
+	}
+
+	public User() {
+	}
+
+	public User(User user) {
+		// TODO Auto-generated constructor stub
+		this.email=user.getEmail();
+		this.password=user.getPassword();
+		this.name=user.getName();
+		this.lastname=user.getLastname();
+		this.role=user.getRole();
+		this.id=user.getId();
+		
+	}
+	
 
 }

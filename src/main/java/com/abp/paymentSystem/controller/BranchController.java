@@ -1,7 +1,6 @@
 package com.abp.paymentSystem.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +21,27 @@ public class BranchController {
 	@Autowired private BranchService branchService;
 	@Autowired private FacultyService facultyService;
 	
+	
+
+	
+	
 	@RequestMapping("/")
 	public String showform() {
 		return "index2";
 	}
+	
+	
+//	@RequestMapping("/login5")
+//	public String loginPage() {
+//		return "login5";
+//	}
+//	
+//	@RequestMapping("/logout-success")
+//	public String logoutPage() {
+//		return "index2";
+//	}
+	
+	
 	@RequestMapping("/about")
 	public String showaboutpage() {
 		return "about";

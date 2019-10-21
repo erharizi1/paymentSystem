@@ -3,6 +3,9 @@ package com.abp.paymentSystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,12 +21,18 @@ public class FacultyController {
 
 	@Autowired
 	private FacultyService facultyService;
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping("/Faculty/viewFaculty")
 	public String indexOfFaculty(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name=auth.getName();
+		
+		
 		List<Faculty> allFaculties=(List<Faculty>)facultyService.listAll();
 		model.addAttribute("allFaculties",allFaculties);
 		return "Faculty/viewFaculty";
 	}
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping("/Faculty/newFaculty")
 	public String createNewFaculty(Model model) {		
 		model.addAttribute("faculty",new Faculty());		
