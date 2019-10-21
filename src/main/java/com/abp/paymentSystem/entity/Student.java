@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,13 +37,17 @@ public class Student {
 	@ManyToOne
 	@JoinColumn(nullable=false, name = "branch_id")
 	private Branch branch;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="course_student",joinColumns=@JoinColumn(name="student_ID"),inverseJoinColumns=@JoinColumn(name="course_ID"))
 	private List<Course> courses;
 	
 	
 	public Student() {}
 	
+	public long getId() {
+		return id;
+	}
+
 	public Student(String firstname, String lastname, String email, String addres, Faculty faculty, Branch branch) {
 		super();
 		this.firstname = firstname;
@@ -53,10 +58,6 @@ public class Student {
 		this.branch = branch;
 	}
 
-
-
-
-	
 
 	public List<Course> getCourses() {
 		return courses;

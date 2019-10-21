@@ -6,12 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.abp.paymentSystem.entity.Branch;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.FacultyService;
@@ -24,10 +24,14 @@ public class BranchController {
 	
 	@RequestMapping("/")
 	public String showform() {
-		return "main-menu";
+		return "index2";
+	}
+	@RequestMapping("/about")
+	public String showaboutpage() {
+		return "about";
 	}
 	
-
+	
 	@RequestMapping("/Branch/list-branches")
 	public String viewBranches(Model model) {
 	    List<Branch> listBranches = (List<Branch>) branchService.listAllBranches();
@@ -43,12 +47,12 @@ public class BranchController {
 		return "Branch/register-form";
 	}
 
-	@RequestMapping(value = "/savebranch", method = RequestMethod.POST)
-	public String saveBranches(@ModelAttribute("branch") Branch branch) {
-		branchService.saveBranch(branch);
-		return "redirect:/Branch/list-branches";
-	}
-	
+//	@RequestMapping(value = "/savebranch", method = RequestMethod.POST)
+//	public String saveBranches(@ModelAttribute("branch") Branch branch) {
+//		branchService.saveBranch(branch);
+//		return "redirect:/Branch/list-branches";
+//	}
+//	
 	@RequestMapping("/deletebranch/{id}")
 	public String deleteBranch(@PathVariable(name = "id") long id) {
 	    branchService.deleteBranch(id);
