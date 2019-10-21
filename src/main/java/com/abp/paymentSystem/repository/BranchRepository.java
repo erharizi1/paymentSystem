@@ -7,5 +7,6 @@ import com.abp.paymentSystem.entity.Branch;
 
 @Repository
 public interface BranchRepository extends CrudRepository<Branch, Long> {
-
+	
+	
 }

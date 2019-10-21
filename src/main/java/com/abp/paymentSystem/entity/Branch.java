@@ -1,5 +1,7 @@
 package com.abp.paymentSystem.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 @Entity
@@ -32,9 +35,22 @@ public class Branch {
 	@JoinColumn(name="faculty_id",nullable = false)
 	private Faculty faculty;
 		
+	@OneToMany()
+	List <Student> students;
 	public Branch() {
 		
 	}
+	
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
 
 	public long getId() {
 		return id;

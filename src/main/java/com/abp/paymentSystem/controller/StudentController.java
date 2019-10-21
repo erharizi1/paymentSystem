@@ -39,20 +39,32 @@ public class StudentController {
 	    model.addAttribute("listStudents", listStudents);
 	        return "Student/list_students";
 	} 
+	@RequestMapping("/success")
+	public String newview(Model model) {
+		return"success";
+	}
+	
 	
 	@RequestMapping("/Student/register")
 	public String newStudent(Model model) {
 		Student student = new Student();
 		    model.addAttribute("student", student);
-		return "Student/register";
+		    model.addAttribute("allBranches", branchService.listAllBranches());
+		    return "Student/register";
 	}
 	
 	
 	
 	@RequestMapping(value = "/savestudent", method = RequestMethod.POST)
-	public String saveStudent(@ModelAttribute("student") Student student) {
+	public String saveStudent(@ModelAttribute("student") Student student,@RequestParam(value="branch") long id) {
+		 // student.getFaculty().setId(facultyService.findFacultyID(id));
+		//student.setFaculty.getId(facultyService.findFacultyID(id));
+		 Branch branch=branchService.getBranch(id);
+	        Faculty faculty=facultyService.get(branchService.getBranch(id).getFaculty().getId());
+	        student.setBranch(branch);
+	        student.setFaculty(faculty);
 		studentService.save(student);
-	    return "redirect:/Student/list_students";
+	    return "redirect:/student-form";
 	}
 	
 	@RequestMapping("/deletestudent/{id}")

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Admin form</title>
+    <title>Student form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -21,7 +21,7 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="../css/style.css">
   </head>
-<body>
+<body >
 <header role="banner">
      
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -83,7 +83,7 @@
         </div>
       </nav>
     </header>
-	<div class="sidebar-container">
+	<div class="sidebar-container" >
 		<div class="sidebar-logo">Student</div>
 		<ul class="sidebar-navigation">
 			<li class="header">My Courses</li>
@@ -93,28 +93,28 @@
 			</a></li>
 			<li class="header">My details</li>
 			<li><a href="/student-form/addStudentList"> <i
-					class="fa fa-users" aria-hidden="true"></i> List of Students
+					class="fa fa-users" aria-hidden="true"></i> Student Data
 			</a></li>
 		</ul>
 	</div>
 
-	<div class="content-container">
+	<div class="content-container" style="height:104%;background-color:rgb(75,75,75);">
 
-		<div class="container-fluid">
+		<div class="container-fluid" style="width: 98%; margin-top:-20px;height:99%;background-image: url(/images/min2.jpg);background-repeat:100% 17%; background-position: 73% 25%;background-size: cover; opacity: 0.6; filter: alpha(opacity=60);">
 
 			<!-- Main component for a primary marketing message or call to action -->
-			<div class="jumbotron">
+			<!-- <div class="jumbotron">
 				<h1>Navbar example</h1>
-				<p>My account</p>
+				<p>My account</p> -->
 
 				<!-- 	SHOW  STUDENTS -->
 
-				<div align="center" th:if="${showMyStudentList} == 1">
+				<div  class="form-wrap1" style=" height:500px;overflow: auto;"align="center"th:if="${showMyStudentList} == 1">
 
-					<h1>Students List</h1>
+					<h1>Students data</h1>
 
 					<br />
-					<table border="1">
+					<table border="1" class="table table-striped">
 						<thead>
 							<tr>
 
@@ -123,8 +123,8 @@
 								<th>Last name</th>
 								<th>E-mail</th>
 								<th>Address</th>
-								<th>branch id</th>
-								<th>faculty id</th>
+								<th>branch name</th>
+								<th>faculty name</th>
 
 							</tr>
 						</thead>
@@ -137,8 +137,9 @@
 								<td th:text="${student.lastname}"></td>
 								<td th:text="${student.email}"></td>
 								<td th:text="${student.addres}"></td>
-								<td th:text="${student.faculty.id}"></td>
-								<td th:text="${student.branch.id}"></td>
+								<td th:text="${student.branch.name}"></td>
+								<td th:text="${student.faculty.name}"></td>
+								
 								<!-- <td>                 
                   <a th:href="@{'/deletestudent/' + ${student.id}}">Delete</a>    
                   <a th:href="@{'/editstudent/' + ${student.id}}">Edit</a>          
@@ -155,12 +156,12 @@
 
 			<!-- 			SHOW  COURSE -->
 
-							<div align="center" th:if="${showMyCourseList} == 1">
+							<div  class="form-wrap1" style=" height:500px;overflow: auto;"align="center" th:if="${showMyCourseList} == 1">
 
 								<h1>Course List</h1>
 
 								<br />
-								<table border="1">
+								<table border="1" class="table table-striped">
 									<thead>
 										<tr>
 											<th>ID</th>
@@ -191,6 +192,6 @@
 		</div>
 
 	</div>
-(</div>)
+<!-- (</div>) -->
 </body>
 </html>
