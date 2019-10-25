@@ -269,16 +269,35 @@
 						<input type="hidden" id="id" th:field="*{id}">
 						<div class="row">
 							<div class="col-md-12 form-group">
-								<label for="name">Finance Name</label> <input type="text"
-									th:field="*{name}" id="name" class="form-control py-2">
+								<label for="name">Finance first name</label> <input type="text"
+									th:field="*{name}" id="name" class="form-control py-2" required="required">
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="lastname">Finance last name</label> <input type="text"
+									th:field="*{lastname}" id="lastname" class="form-control py-2" required="required">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="email">Finance email</label> <input type="email"
+									th:field="*{email}" id="email" class="form-control py-2" required="required">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="password">Finance password</label> <input type="password"
+									th:field="*{password}" id="email" class="form-control py-2" required="required">
+							</div>
+						</div>
+						
 
 
 						<div class="row">
 							<div class="col-md-12 form-group">
-								<label for="name">Finance Salary</label> <input type="text"
-									th:field="*{salary}" id="name" class="form-control py-2">
+								<label for="name">Finance Salary</label> <input type="number"
+									th:field="*{salary}" id="name" class="form-control py-2" required="required">
 							</div>
 						</div>
 
@@ -308,17 +327,26 @@
 					<table border="1">
 						<thead>
 							<tr>
-								<th>Name</th>
+								<th>First name</th>
+								<th>Last name</th>
+								<th>Email</th>
 								<th>Salary</th>
 								<th>Faculty</th>
+								<th>Edit/Delete</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="finance: ${allFinances}">
 
 								<td th:text="${finance.name}"></td>
+								<td th:text="${finance.lastname}"></td>
+								<td th:text="${finance.email}"></td>
 								<td th:text="${finance.salary}"></td>
 								<td th:text="${finance.faculty.name}"></td>
+								<td>
+									<a th:href="@{'/admin-form/edit/' + ${finance.id}}">Edit</a>
+									<a th:href="@{'/admin-form/delete/' + ${finance.id}}">Delete</a>
+								</td>
 								<!-- <td>                 
                   <a th:href="@{'/deletebranch/' + ${branch.branchId}}">Delete</a>    
                   <a th:href="@{'/editbranch/' + ${branch.branchId}}">Edit</a>          

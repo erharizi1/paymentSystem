@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Finance</title>
+</head>
+<body>
+<div align="center">
+        <h1>Edit Product</h1>
+        <br />
+        <form action="#" th:action="@{/admin-form/saveFinanceEdit}" th:object="${finance}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                    <input type="hidden"  th:field="*{id}">
+                    <input type="hidden"  th:field="*{email}">
+                    <input type="hidden" th:field="*{password}">
+                    
+                <tr>             
+                    <td>Finance first name:</td>
+                    <td>
+                        <input type="text" th:field="*{name}" />
+                       
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Finance last name:</td>
+                    <td><input type="text" th:field="*{lastname}" /></td>
+                </tr>
+               
+                <tr>
+                    <td>Finance salary:</td>
+                    <td><input type="number" th:field="*{salary}" /></td>
+                </tr>                                
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

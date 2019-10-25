@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// TODO Auto-generated method stub
 		http.csrf().disable();
 		http.authorizeRequests()
-		.antMatchers("**/Faculty/**","**/Finance/**").authenticated()
+		.antMatchers("**/Faculty/**","**/admin-form/**").authenticated()
 		.anyRequest().permitAll()
 		.and().formLogin().permitAll();
 	}
