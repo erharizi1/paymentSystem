@@ -17,6 +17,9 @@ public class CourseService {
         return (List<Course>) courserepo.findAll();
     }
 	
+	public List<Course> listByBranch(long id){
+		return (List<Course>) courserepo.findByBranchId(id);
+	}
 	public void saveCourse(Course course) {
 		courserepo.save(course);
     }

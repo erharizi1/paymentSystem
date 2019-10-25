@@ -27,7 +27,7 @@
      
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand absolute" href="/">University</a>
+          <a class="navbar-brand absolute" href="/"><b>ABP</b> University</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -114,24 +114,18 @@
 		</ul>
 	</div>
 
-	<div class="content-container">
+	<div class="content-container" style="height:104%;background-color:rgb(75,75,75);">
 
-		<div class="container-fluid">
-			<!-- <div class="jumbotron"> -->
-<h1 align="center">Welcome to admin page</h1>
+		<div class="container-fluid" style="width: 98%; margin-top:-20px;height:99%;">
 
 
 
 
 
 
-				<!-- 	ADD A NEW FACULTY -->
-<section class="site-section1" >
-      <div class="container" >
-        <div class="row justify-content-center">
-          <div class="col-md-7"  >
+				<!-- 	ADD A NEW FACULTY -->  >
             <div class="form-wrap1" th:if="${showFacultyForm} == 1">
-              <h2 class="mb-5">Register a new faculty</h2>
+              <h2 class="mb-5" align="center">Register a new faculty</h2>
               <a href="/admin-form/addFacultyList">List of Faculties</a> 
               <form action="#"  th:action="@{/admin-form/addFaculty}"
 						th:object="${faculty}" method="post">
@@ -162,8 +156,8 @@
 					<h1 class="mb-5">List faculties</h1>
 					<br>
 
-					<table border="1" class="table table-hover">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>Name</th>
 								<th>Finance Employee</th>
@@ -195,7 +189,7 @@
      
             
 				<div  class="form-wrap1" th:if="${showBranchForm} == 1">
-					<h1 class="mb-5">Add New Branch</h1>
+					<h1 class="mb-5" align="center">Add New Branch</h1>
 					<a href="/admin-form/addBranchList">List of Branches</a> <br>
 					<form action="#" th:action="@{/admin-form/addBranch}"
 						th:object="${branch}" method="post">
@@ -237,8 +231,8 @@
 					<h1 class="mb-5">List Branch</h1>
 					<br>
 
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
@@ -263,7 +257,7 @@
 				<!-- ADD  FINANCE -->
 
 				<div class="form-wrap1" th:if="${showFinanceForm} == 1">
-					<h2 class="mb-5">Register new finance</h2>
+					<h2 class="mb-5" align="center">Register new finance</h2>
 					<form action="#" th:action="@{/admin-form/addFinance}"
 						th:object="${finance}" method="post">
 						<input type="hidden" id="id" th:field="*{id}">
@@ -324,8 +318,8 @@
 				<div class="form-wrap1" style=" height:500px;overflow: auto;" align="center" th:if="${showFinancesList} == 1">
 					<h1 class="mb-5">Finance List</h1>
 					<br /> <br />
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>First name</th>
 								<th>Last name</th>
@@ -365,8 +359,8 @@
 					<h1 class="mb-5">Students List</h1>
 
 					<br />
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 
 								<th>ID</th>
@@ -405,7 +399,7 @@
 				<!-- 	ADD A NEW COURSE -->
 
 				<div class="form-wrap1" th:if="${showCourseForm} == 1"> 
-					<h1 class="mb-5">Add New Course</h1>
+					<h1 class="mb-5" align="center">Add New Course</h1>
 					<br> <a href="/admin-form/addCourseList">List of Courses</a>
 					<form action="#" th:action="@{/admin-form/addCourse}"
 						th:object="${course}" method="post">
@@ -449,8 +443,8 @@
 					<h1 class="mb-5">Course List</h1>
 
 					<br />
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
@@ -475,14 +469,7 @@
 				</div>
 
 				<!-- 	END	SHOW  COURSE -->
-
-			</div>
-
-
-
-				</div>
-			</div>
-			 </section>
+ 
         </div>
       </div>
    
