@@ -1,7 +1,9 @@
 package com.abp.paymentSystem.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -18,11 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.abp.paymentSystem.entity.Branch;
 import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.entity.Faculty;
+import com.abp.paymentSystem.entity.Role;
 import com.abp.paymentSystem.entity.Student;
+import com.abp.paymentSystem.entity.User;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.FacultyService;
+import com.abp.paymentSystem.service.RoleService;
 import com.abp.paymentSystem.service.StudentService;
+import com.abp.paymentSystem.service.UserService;
 
 
 @Controller
@@ -32,6 +38,8 @@ public class StudentController {
 @Autowired private CourseService courseService;
 @Autowired private BranchService branchService;
 @Autowired private FacultyService facultyService;
+@Autowired private RoleService roleService;
+@Autowired private UserService userService;
 	
 	@RequestMapping("/Student/list_students")
 	public String viewStudents(Model model) {
@@ -64,6 +72,17 @@ public class StudentController {
 	        student.setBranch(branch);
 	        student.setFaculty(faculty);
 		studentService.save(student);
+		User user=new User();
+		user.setEmail(student.getEmail());
+		user.setLastname(student.getLastname());
+		user.setName(student.getFirstname());
+		Role role=roleService.getRole(3);
+		Set<Role> roles=new HashSet<>();
+		roles.add(role); 
+		user.setRole(roles);
+		user.setPassword(student.getPassword());
+		
+		userService.saveUser(user);
 	    return "redirect:/student-form";
 	}
 	

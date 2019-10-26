@@ -36,9 +36,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// TODO Auto-generated method stub
 		http.csrf().disable();
 		http.authorizeRequests()
-		.antMatchers("**/Faculty/**","**/admin-form/**").authenticated()
+		.antMatchers("**/acc-form/**","**/admin-form/**","**/student-form/**").authenticated()
 		.anyRequest().permitAll()
-		.and().formLogin().permitAll();
+		.and().formLogin().permitAll()
+		.and().logout()    //logout configuration
+		.logoutUrl("/app-logout") 
+		.logoutSuccessUrl("/")
+		.and().exceptionHandling() //exception handling configuration
+		.accessDeniedPage("/app/error");
 	}
 
 

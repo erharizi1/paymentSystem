@@ -128,9 +128,16 @@
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label for="name">E-mail</label>
-                      <input type="text" th:field="*{email} "id="name" required class="form-control py-2">
+                      <input type="email" th:field="*{email} "id="name" required class="form-control py-2">
                      </div>
                   </div>
+                   <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="password">Password</label>
+                      <input type="password" th:field="*{password} "id="name" required class="form-control py-2">
+                     </div>
+                  </div>
+                  
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label for="name">Address</label>
