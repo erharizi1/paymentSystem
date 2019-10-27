@@ -21,7 +21,7 @@ public class FacultyController {
 
 	@Autowired
 	private FacultyService facultyService;
-	@PreAuthorize("hasAnyRole('ADMIN')")
+
 	@RequestMapping("/Faculty/viewFaculty")
 	public String indexOfFaculty(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -32,7 +32,7 @@ public class FacultyController {
 		model.addAttribute("allFaculties",allFaculties);
 		return "Faculty/viewFaculty";
 	}
-	@PreAuthorize("hasAnyRole('ADMIN')")
+
 	@RequestMapping("/Faculty/newFaculty")
 	public String createNewFaculty(Model model) {		
 		model.addAttribute("faculty",new Faculty());		

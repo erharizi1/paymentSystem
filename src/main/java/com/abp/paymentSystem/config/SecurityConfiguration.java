@@ -36,9 +36,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// TODO Auto-generated method stub
 		http.csrf().disable();
 		http.authorizeRequests()
-		.antMatchers("**/acc-form/**","**/admin-form/**","**/student-form/**").authenticated()
+		.antMatchers("/login").authenticated()
 		.anyRequest().permitAll()
-		.and().formLogin().permitAll()
+		.and().formLogin()
+        .loginPage("/login").failureUrl("/login?error=true")
+        .defaultSuccessUrl("/ridirektUser")
+        .usernameParameter("email")
+        .passwordParameter("password")
+		.permitAll()
 		.and().logout()    //logout configuration
 		.logoutUrl("/app-logout") 
 		.logoutSuccessUrl("/")

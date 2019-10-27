@@ -22,7 +22,7 @@ import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.FacultyService;
 import com.abp.paymentSystem.service.StudentService;
-@PreAuthorize("hasAnyRole('FINANCE')")
+//@PreAuthorize("hasAnyRole('FINANCE')")
 @Controller
 public class AccountantController {
 	

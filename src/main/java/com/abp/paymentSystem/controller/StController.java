@@ -21,7 +21,7 @@ import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.StudentService;
 
 
-@PreAuthorize("hasAnyRole('STUDENT')")
+//@PreAuthorize("hasAnyRole('STUDENT')")
 @Controller
 public class StController {
 	@Autowired

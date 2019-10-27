@@ -31,7 +31,7 @@ import com.abp.paymentSystem.service.RoleService;
 import com.abp.paymentSystem.service.StudentService;
 import com.abp.paymentSystem.service.UserService;
 
-@PreAuthorize("hasAnyRole('ADMIN')")
+//@PreAuthorize("hasAnyRole('ADMIN')")
 @Controller
 public class AdminController {
 	
