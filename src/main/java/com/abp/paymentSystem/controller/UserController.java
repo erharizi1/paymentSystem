@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 	
+	
 	@RequestMapping(value = {"/login"},method=RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView model = new ModelAndView();

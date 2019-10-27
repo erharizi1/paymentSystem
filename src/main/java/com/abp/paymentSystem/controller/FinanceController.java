@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -23,6 +24,7 @@ public class FinanceController {
 	private FinanceService financeService;
 	@Autowired
 	private FacultyService facultyService;
+	@PreAuthorize("hasAnyRole('FINANCE')")
 	@RequestMapping("/Finance/viewFinance")
 	public String indexOfFinance(Model model) {
 		List<Finance> allFinances=(List<Finance>)financeService.listAllFinances();

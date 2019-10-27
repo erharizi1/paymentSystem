@@ -11,6 +11,7 @@ import java.util.List;
 public class FacultyService {
 	   @Autowired
 	    private FacultyRepository repo;
+	    
 	    public List<Faculty> listAll() {
 	        return (List<Faculty>) repo.findAll();
 	    }

@@ -26,7 +26,7 @@
      
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand absolute" href="/">University</a>
+          <a class="navbar-brand absolute" href="/"><b>ABP</b> University</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -107,16 +107,9 @@
 		</ul>
 	</div>
 
-	<div class="content-container">
+	<div class="content-container" style="height:104%;background-color:rgb(75,75,75);">
 
-		<div class="container-fluid">
- 	<h1 align="center">Welcome to Branch Accountant page</h1>
-
-
-<section class="site-section1" >
-      <div class="container" >
-        <div class="row justify-content-center">
-          <div class="col-md-7"  >
+		<div class="container-fluid" style="width: 98%; margin-top:-20px;height:99%;">
 				<!-- 	SHOW FACULTY -->
 
 				<div class="form-wrap1" align="center" style=" height:500px;overflow: auto;" th:if="${showFacultyList} == 1">
@@ -124,8 +117,8 @@
 					<h1>List faculties</h1>
 					<br>
 
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>Name</th>
 								<th>Faculties</th>
@@ -161,8 +154,8 @@
 					<h1>List Branch</h1>
 					<br>
 
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
@@ -192,8 +185,8 @@
 					<h1>Students List</h1>
 
 					<br />
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 
 								<th>ID</th>
@@ -232,7 +225,7 @@
 				<!-- ADD A NEW COURSE -->
 
 				<div class="form-wrap1" th:if="${showCourseForm} == 1">
-					<h1>Add New Course</h1> 
+					<h1 align="center"> Add New Course</h1> 
 									<form action="#" th:action="@{/admin-form/addCourse}"
 										th:object="${course}" method="post">
 
@@ -274,8 +267,8 @@
 								<h1>Course List</h1>
 
 								<br />
-								<table border="1">
-									<thead>
+								<table border="1"  class="table table-striped">
+									<thead class="thead-dark">
 										<tr>
 											<th>ID</th>
 											<th>Name</th>
@@ -301,11 +294,7 @@
 							</div>
 
 			<!-- 			END	SHOW  COURSE -->
-</div></div></div></section>
-			
-		</div>
-
-	</div>
+</div></div> 
 
 </body>
 </html>

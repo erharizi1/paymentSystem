@@ -3,6 +3,7 @@ package com.abp.paymentSystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,7 +20,7 @@ import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.FacultyService;
 import com.abp.paymentSystem.service.StudentService;
-
+@PreAuthorize("hasAnyRole('FINANCE')")
 @Controller
 public class AccountantController {
 	

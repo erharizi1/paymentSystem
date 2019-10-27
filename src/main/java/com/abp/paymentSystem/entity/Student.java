@@ -40,7 +40,15 @@ public class Student {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="course_student",joinColumns=@JoinColumn(name="student_ID"),inverseJoinColumns=@JoinColumn(name="course_ID"))
 	private List<Course> courses;
+	@Column( nullable=false )
+	private String password;
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 	public Student() {}
 	

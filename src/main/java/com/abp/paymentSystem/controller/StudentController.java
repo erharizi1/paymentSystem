@@ -1,7 +1,9 @@
 package com.abp.paymentSystem.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -18,11 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.abp.paymentSystem.entity.Branch;
 import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.entity.Faculty;
+import com.abp.paymentSystem.entity.Role;
 import com.abp.paymentSystem.entity.Student;
+import com.abp.paymentSystem.entity.User;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.FacultyService;
+import com.abp.paymentSystem.service.RoleService;
 import com.abp.paymentSystem.service.StudentService;
+import com.abp.paymentSystem.service.UserService;
 
 
 @Controller
@@ -32,6 +38,8 @@ public class StudentController {
 @Autowired private CourseService courseService;
 @Autowired private BranchService branchService;
 @Autowired private FacultyService facultyService;
+@Autowired private RoleService roleService;
+@Autowired private UserService userService;
 	
 	@RequestMapping("/Student/list_students")
 	public String viewStudents(Model model) {
@@ -39,20 +47,43 @@ public class StudentController {
 	    model.addAttribute("listStudents", listStudents);
 	        return "Student/list_students";
 	} 
+	@RequestMapping("/success")
+	public String newview(Model model) {
+		return"success";
+	}
+	
 	
 	@RequestMapping("/Student/register")
 	public String newStudent(Model model) {
 		Student student = new Student();
 		    model.addAttribute("student", student);
-		return "Student/register";
+		    model.addAttribute("allBranches", branchService.listAllBranches());
+		    return "Student/register";
 	}
 	
 	
 	
 	@RequestMapping(value = "/savestudent", method = RequestMethod.POST)
-	public String saveStudent(@ModelAttribute("student") Student student) {
+	public String saveStudent(@ModelAttribute("student") Student student,@RequestParam(value="branch") long id) {
+		 // student.getFaculty().setId(facultyService.findFacultyID(id));
+		//student.setFaculty.getId(facultyService.findFacultyID(id));
+		 Branch branch=branchService.getBranch(id);
+	        Faculty faculty=facultyService.get(branchService.getBranch(id).getFaculty().getId());
+	        student.setBranch(branch);
+	        student.setFaculty(faculty);
 		studentService.save(student);
-	    return "redirect:/Student/list_students";
+		User user=new User();
+		user.setEmail(student.getEmail());
+		user.setLastname(student.getLastname());
+		user.setName(student.getFirstname());
+		Role role=roleService.getRole(3);
+		Set<Role> roles=new HashSet<>();
+		roles.add(role); 
+		user.setRole(roles);
+		user.setPassword(student.getPassword());
+		
+		userService.saveUser(user);
+	    return "redirect:/student-form";
 	}
 	
 	@RequestMapping("/deletestudent/{id}")

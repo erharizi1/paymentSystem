@@ -27,7 +27,7 @@
      
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand absolute" href="/">University</a>
+          <a class="navbar-brand absolute" href="/"><b>ABP</b> University</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -73,12 +73,18 @@
                 <a class="nav-link" href="/contact">Contact</a>
               </li>
             </ul>
-            <ul class="navbar-nav absolute-right">
-              <li>
-                <a href="/login5">Login</a> / <a href="/Student/register">Register</a>
-              </li>
+           
+                <form th:action="@{/app-logout}" method="POST" id="demo">
+	                 <ul class="navbar-nav absolute-right">
+			              <li>
+					         <a href="#" onclick="document.getElementById('demo').submit();">Logout</a>/
+					          <a href="/Student/register">Register</a>
+					      </li>
               
-            </ul>
+                    </ul>
+			    </form>
+	     
+             
             
           </div>
         </div>
@@ -114,24 +120,18 @@
 		</ul>
 	</div>
 
-	<div class="content-container">
+	<div class="content-container" style="height:104%;background-color:rgb(75,75,75);">
 
-		<div class="container-fluid">
-			<!-- <div class="jumbotron"> -->
-<h1 align="center">Welcome to admin page</h1>
+		<div class="container-fluid" style="width: 98%; margin-top:-20px;height:99%;">
 
 
 
 
 
 
-				<!-- 	ADD A NEW FACULTY -->
-<section class="site-section1" >
-      <div class="container" >
-        <div class="row justify-content-center">
-          <div class="col-md-7"  >
+				<!-- 	ADD A NEW FACULTY -->  >
             <div class="form-wrap1" th:if="${showFacultyForm} == 1">
-              <h2 class="mb-5">Register a new faculty</h2>
+              <h2 class="mb-5" align="center">Register a new faculty</h2>
               <a href="/admin-form/addFacultyList">List of Faculties</a> 
               <form action="#"  th:action="@{/admin-form/addFaculty}"
 						th:object="${faculty}" method="post">
@@ -139,7 +139,7 @@
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label for="name">Faculty Name</label>
-                      <input type="text" th:field="*{name}" id="name" class="form-control py-2">
+                      <input type="text" th:field="*{name}" required id="name" class="form-control py-2">
                      </div>
                   </div>
                   
@@ -162,8 +162,8 @@
 					<h1 class="mb-5">List faculties</h1>
 					<br>
 
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>Name</th>
 								<th>Finance Employee</th>
@@ -195,7 +195,7 @@
      
             
 				<div  class="form-wrap1" th:if="${showBranchForm} == 1">
-					<h1 class="mb-5">Add New Branch</h1>
+					<h1 class="mb-5" align="center">Add New Branch</h1>
 					<a href="/admin-form/addBranchList">List of Branches</a> <br>
 					<form action="#" th:action="@{/admin-form/addBranch}"
 						th:object="${branch}" method="post">
@@ -206,13 +206,13 @@
 				<div class="row">
                     <div class="col-md-12 form-group">
                       <label for="name">Name</label>
-                      <input type="text" th:field="*{name}" id="name" class="form-control py-2">
+                      <input type="text" th:field="*{name}" required id="name" class="form-control py-2">
                      </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label for="name">Faculty id</label>
-                      <select id="name" class="form-control py-2" th:field="*{faculty}">
+                      <select id="name" required class="form-control py-2" th:field="*{faculty}">
 										<option th:each="f: ${allFaculties}" th:value="${f.id}"
 											th:text="${f.name}" />
 					  </select>
@@ -237,8 +237,8 @@
 					<h1 class="mb-5">List Branch</h1>
 					<br>
 
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
@@ -263,22 +263,41 @@
 				<!-- ADD  FINANCE -->
 
 				<div class="form-wrap1" th:if="${showFinanceForm} == 1">
-					<h2 class="mb-5">Register new finance</h2>
+					<h2 class="mb-5" align="center">Register new finance</h2>
 					<form action="#" th:action="@{/admin-form/addFinance}"
 						th:object="${finance}" method="post">
 						<input type="hidden" id="id" th:field="*{id}">
 						<div class="row">
 							<div class="col-md-12 form-group">
-								<label for="name">Finance Name</label> <input type="text"
-									th:field="*{name}" id="name" class="form-control py-2">
+								<label for="name">Finance first name</label> <input type="text"
+									th:field="*{name}" id="name" class="form-control py-2" required="required">
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="lastname">Finance last name</label> <input type="text"
+									th:field="*{lastname}" id="lastname" class="form-control py-2" required="required">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="email">Finance email</label> <input type="email"
+									th:field="*{email}" id="email" class="form-control py-2" required="required">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="password">Finance password</label> <input type="password"
+									th:field="*{password}" id="email" class="form-control py-2" required="required">
+							</div>
+						</div>
+						
 
 
 						<div class="row">
 							<div class="col-md-12 form-group">
-								<label for="name">Finance Salary</label> <input type="text"
-									th:field="*{salary}" id="name" class="form-control py-2">
+								<label for="name">Finance Salary</label> <input type="number"
+									th:field="*{salary}" id="name" class="form-control py-2" required="required">
 							</div>
 						</div>
 
@@ -305,20 +324,29 @@
 				<div class="form-wrap1" style=" height:500px;overflow: auto;" align="center" th:if="${showFinancesList} == 1">
 					<h1 class="mb-5">Finance List</h1>
 					<br /> <br />
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
-								<th>Name</th>
+								<th>First name</th>
+								<th>Last name</th>
+								<th>Email</th>
 								<th>Salary</th>
 								<th>Faculty</th>
+								<th>Edit/Delete</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="finance: ${allFinances}">
 
 								<td th:text="${finance.name}"></td>
+								<td th:text="${finance.lastname}"></td>
+								<td th:text="${finance.email}"></td>
 								<td th:text="${finance.salary}"></td>
 								<td th:text="${finance.faculty.name}"></td>
+								<td>
+									<a th:href="@{'/admin-form/edit/' + ${finance.id}}">Edit</a>
+									<a th:href="@{'/admin-form/delete/' + ${finance.id}}">Delete</a>
+								</td>
 								<!-- <td>                 
                   <a th:href="@{'/deletebranch/' + ${branch.branchId}}">Delete</a>    
                   <a th:href="@{'/editbranch/' + ${branch.branchId}}">Edit</a>          
@@ -337,8 +365,8 @@
 					<h1 class="mb-5">Students List</h1>
 
 					<br />
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 
 								<th>ID</th>
@@ -377,7 +405,7 @@
 				<!-- 	ADD A NEW COURSE -->
 
 				<div class="form-wrap1" th:if="${showCourseForm} == 1"> 
-					<h1 class="mb-5">Add New Course</h1>
+					<h1 class="mb-5" align="center">Add New Course</h1>
 					<br> <a href="/admin-form/addCourseList">List of Courses</a>
 					<form action="#" th:action="@{/admin-form/addCourse}"
 						th:object="${course}" method="post">
@@ -388,19 +416,19 @@
 						<div class="row">
 							<div class="col-md-12 form-group">
 								<label for="name">Course Name:</label> <input type="text"
-									th:field="*{name}" id="name" class="form-control py-2">
+									th:field="*{name}" id="name" required class="form-control py-2">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12 form-group">
 								<label for="name">Course Price:</label> <input type="text"
-									th:field="*{price}" id="name" class="form-control py-2">
+									th:field="*{price}" id="name" required class="form-control py-2">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12 form-group">
 								<label for="name">Branch </label> <select
-									th:field="*{branch}" id="name" class="form-control py-2">
+									th:field="*{branch}" required id="name" class="form-control py-2">
 									<option th:each="b: ${allBranches}" th:value="${b.id}"
 										th:text="${b.name}" />
 								</select>
@@ -421,8 +449,8 @@
 					<h1 class="mb-5">Course List</h1>
 
 					<br />
-					<table border="1">
-						<thead>
+					<table border="1" class="table table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
@@ -447,16 +475,10 @@
 				</div>
 
 				<!-- 	END	SHOW  COURSE -->
-
-			</div>
-
-
-
-				</div>
-			</div>
+ 
         </div>
       </div>
-    </section>
+   
 	<!-- </div> -->
 </body>
 </html>
