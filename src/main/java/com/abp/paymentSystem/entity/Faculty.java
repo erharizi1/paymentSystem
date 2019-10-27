@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
-
 @Entity
 public class Faculty {
 	@Id
@@ -26,6 +24,7 @@ public class Faculty {
 	private List<Finance> finaces;
 	@OneToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE,
 			CascadeType.DETACH,CascadeType.REFRESH})
+	
 	private List<Branch> branches;
 	
 	public List<Branch> getBranches() {

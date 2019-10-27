@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.abp.paymentSystem.entity.Branch;
+import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.entity.Faculty;
 import com.abp.paymentSystem.repository.BranchRepository;
 
@@ -23,6 +24,10 @@ public class BranchService {
 	public List<Branch> listAllBranches() {
         return (List<Branch>) branchrepo.findAll();
     }
+	
+	public List<Branch> listByFaculty(long id){
+		return (List<Branch>) branchrepo.findByFacultyId(id);
+	}
 	
 	public void saveBranch(Branch branch) {
 		branchrepo.save(branch);

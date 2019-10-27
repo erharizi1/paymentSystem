@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.abp.paymentSystem.entity.Branch;
-import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.entity.Faculty;
 import com.abp.paymentSystem.entity.Finance;
 import com.abp.paymentSystem.entity.Role;
 import com.abp.paymentSystem.entity.Student;
 import com.abp.paymentSystem.entity.User;
-import com.abp.paymentSystem.repository.UserRepository;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.FacultyService;
@@ -80,10 +80,7 @@ public class AdminController {
 		return modelAndview;
 	}
 	
-	
-	
-
-	
+		
 //	@RequestMapping("/deletefaculty/{id}")
 //	public  ModelAndView deleteFaculty(@PathVariable(name = "id") long id) {
 //		ModelAndView modelAndview = new ModelAndView("admin-form");
@@ -117,28 +114,10 @@ public class AdminController {
 	        return modelAndview;
 	}
 	
-	@GetMapping("/admin-form/addCourseForm")
-	  public ModelAndView redirectCourseForm(Model model) {
-			ModelAndView modelAndview = new ModelAndView("admin-form");
-			model.addAttribute("course", new Course());
-			model.addAttribute("allBranches", branchService.listAllBranches());
-	      model.addAttribute("showCourseForm", 1);
-	      return modelAndview;
-		}
-	
-	@RequestMapping("/admin-form/addCourse")
-	public ModelAndView redirectSaveCourses(@ModelAttribute("course") Course course,ModelMap model ) {
-		courseService.saveCourse(course);
-		return new ModelAndView("forward:/admin-form", model);
-	}
-	
-	@GetMapping("/admin-form/addCourseList")
-	public ModelAndView redirectListCourses(Model model) {
-		ModelAndView modelAndview = new ModelAndView("admin-form");
-	    List<Course> listCourses = (List<Course>) courseService.listAllCourses();
-	    model.addAttribute("listCourses", listCourses);
-	    model.addAttribute("showCourseList", 1);
-	        return modelAndview;
+	@RequestMapping("/admin-form/deletebranch/{id}")
+	public String deleteBranch(@PathVariable(name = "id") long id) {
+	    branchService.deleteBranch(id);
+	    return "redirect:/";       
 	}
 	
 	@GetMapping("/admin-form/addFinanceForm")
@@ -204,18 +183,48 @@ public class AdminController {
 		ModelAndView modelAndview = new ModelAndView("admin-form");
 		List<Finance> allFinances=(List<Finance>)financeService.listAllFinances();
 		model.addAttribute("allFinances",allFinances);
+		List <Faculty>listFaculty=facultyService.listAll();
+	    model.addAttribute("listFaculty", listFaculty);
 		 model.addAttribute("showFinancesList", 1);
 		 return modelAndview;
+	}
+	
+	@RequestMapping(value ="/admin-form/addFinanceList1", method = RequestMethod.POST)
+	public ModelAndView indexOfFinance1(Model model, @RequestParam(value="faculty",required =true) long id) {
+		ModelAndView modelAndview = new ModelAndView("admin-form");
+		List<Finance> listFinance = (List<Finance>) financeService.listByFaculty(id);
+		List <Faculty>listFaculty=facultyService.listAll();
+	    model.addAttribute("listFaculty", listFaculty);
+		model.addAttribute("listFinance", listFinance);
+		 model.addAttribute("showFinancesList", 1);
+        return modelAndview;
 	}
 	
 	@GetMapping("/admin-form/addStudentList")
 	public ModelAndView indexOfStudents(Model model) {
 		ModelAndView modelAndview = new ModelAndView("admin-form");
-	    List<Student> listStudents = studentService.listAll();
+	    List<Student> listStudents = (List<Student>) studentService.listAll();
 	    model.addAttribute("listStudents", listStudents);
+	    List <Branch>listBranches=branchService.listAllBranches();
+	    model.addAttribute("listBranches", listBranches);
 	    model.addAttribute("showStudentList", 1);
 	        return modelAndview;
 	} 
+	
+	
+	
+	
+	
+	@RequestMapping(value ="/admin-form/addStudentList1", method = RequestMethod.POST)
+	public ModelAndView indexOfStudents1(Model model, @RequestParam(value="branch",required =true) long id) {
+		ModelAndView modelAndview = new ModelAndView("admin-form");
+		List<Student> listStudents = (List<Student>) studentService.listByBranch(id);
+		List <Branch>listBranches=branchService.listAllBranches();
+	    model.addAttribute("listBranches", listBranches);
+		model.addAttribute("listStudents", listStudents);
+		 model.addAttribute("showStudentList", 1);
+        return modelAndview;
+	}
 	
 	@RequestMapping("/admin-form/edit/{id}")
 	public ModelAndView showEditFinancePage(@PathVariable(name = "id") long id) {

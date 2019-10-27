@@ -22,9 +22,6 @@ public class BranchController {
 	@Autowired private FacultyService facultyService;
 	
 	
-
-	
-	
 	@RequestMapping("/")
 	public String showform() {
 		return "index2";
@@ -69,11 +66,11 @@ public class BranchController {
 //		return "redirect:/Branch/list-branches";
 //	}
 //	
-	@RequestMapping("/deletebranch/{id}")
-	public String deleteBranch(@PathVariable(name = "id") long id) {
-	    branchService.deleteBranch(id);
-	    return "redirect:/";       
-	}
+//	@RequestMapping("/deletebranch/{id}")
+//	public String deleteBranch(@PathVariable(name = "id") long id) {
+//	    branchService.deleteBranch(id);
+//	    return "redirect:/";       
+//	}
 	
 //	@RequestMapping("/editbranch/{id}")
 //	public ModelAndView showEditBranchPage(@PathVariable(name = "id") int id) {

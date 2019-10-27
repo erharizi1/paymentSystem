@@ -12,9 +12,15 @@ import com.abp.paymentSystem.repository.FinanceRepository;
 public class FinanceService {
 	@Autowired
 	private FinanceRepository repo;
+	
 	public List<Finance> listAllFinances(){
 		return  (List<Finance>) repo.findAll();
 	}
+	
+	public List<Finance> listByFaculty(long id){
+		return (List<Finance>) repo.findByFacultyId(id);
+	}
+	
 	public void saveFinance(Finance f) {
 		repo.save(f);
 	}

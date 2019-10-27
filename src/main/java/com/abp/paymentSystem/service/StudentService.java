@@ -15,7 +15,11 @@ public class StudentService {
 	    public List<Student> listAll() {
 	        return (List<Student>) repo.findAll();
 	    }
-	     
+	    
+	    public List<Student> listByBranch(long id){
+			return (List<Student>) repo.findByBranchId(id);
+		}
+	    
 	    public void save(Student student) {
 	        repo.save(student);
 	    }

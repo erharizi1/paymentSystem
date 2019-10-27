@@ -10,6 +10,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.abp.paymentSystem.entity.Branch;
@@ -38,20 +40,24 @@ public class AccountantController {
 		return "acc-form";
 	}
 	
-	@GetMapping("/acc-form/addFacultyList")
-	public ModelAndView indexOfFaculty(Model model) {
+	@RequestMapping(value ="/acc-form/listmybranches", method = RequestMethod.POST)
+	public ModelAndView listmybranches(Model model,@RequestParam(value="faculty",required =true) long id) {
 		ModelAndView modelAndview = new ModelAndView("acc-form");
-		List<Faculty> allFaculties=(List<Faculty>)facultyService.listAll();
-		model.addAttribute("allFaculties",allFaculties);
-		 model.addAttribute("showFacultyList", 1);
-		return modelAndview;
+		List<Branch> listBranches = branchService.listByFaculty(id);
+		List <Faculty>listFaculties=facultyService.listAll();
+	    model.addAttribute("listFaculties", listFaculties);
+		model.addAttribute("listBranches", listBranches);
+		model.addAttribute("showBranchList", 1);
+        return modelAndview;
 	}
-	
+
 	@GetMapping("/acc-form/addBranchList")
 	public ModelAndView redirectListBranches(Model model) {
 		ModelAndView modelAndview = new ModelAndView("acc-form");
 	    List<Branch> listBranches = (List<Branch>) branchService.listAllBranches();
 	    model.addAttribute("listBranches", listBranches);
+	    List <Faculty>listFaculties=facultyService.listAll();
+	    model.addAttribute("listFaculties", listFaculties);
 	    model.addAttribute("showBranchList", 1);
 	        return modelAndview;
 	}
@@ -61,7 +67,7 @@ public class AccountantController {
 		ModelAndView modelAndview = new ModelAndView("acc-form");
 		model.addAttribute("course", new Course());
 		model.addAttribute("allBranches", branchService.listAllBranches());
-      model.addAttribute("showCourseForm", 1);
+      model.addAttribute("showCourssForm", 1);
       return modelAndview;
 	}
 	
