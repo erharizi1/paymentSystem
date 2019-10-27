@@ -176,7 +176,7 @@
 											<th>Name</th>
 											<th>Price</th>
 											<th>Branch</th>
-											<th>Selected</th>
+											<th>Status</th>
 
 										</tr>
 									</thead>
@@ -188,8 +188,8 @@
 											<td th:text="${course.branch.name}">Branch</td>
 											<!-- 	<td><a th:href="@{'/deletecourse/' + ${course.id}}">Delete</a> -->
 											<!-- <a th:href="@{'/editcourse/' + ${course.id}}">Edit</a></td> -->
-											<td><input type="checkbox" name="ids"th:value="${course.id}"/></td>
-			
+											<!-- <td><input type="checkbox" name="ids"th:value="${course.id}"/></td> -->
+											<!-- <td th:if="${course.status}==false"><i class="fa fa-times-circle-o" aria-hidden="true"></i></td> -->
 										</tr>
 									</tbody>
 								</table>

@@ -20,6 +20,9 @@ public class CourseService {
 	public List<Course> listByBranch(long id){
 		return (List<Course>) courserepo.findByBranchId(id);
 	}
+
+	
+	 
 	public void saveCourse(Course course) {
 		courserepo.save(course);
     }

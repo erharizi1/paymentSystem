@@ -10,4 +10,5 @@ import com.abp.paymentSystem.entity.Course;
 @Repository
 public interface CourseRepository extends CrudRepository<Course, Long>{
  public List<Course> findByBranchId(long id);
+
 }

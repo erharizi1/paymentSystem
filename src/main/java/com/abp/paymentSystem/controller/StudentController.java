@@ -71,6 +71,11 @@ public class StudentController {
 	        Faculty faculty=facultyService.get(branchService.getBranch(id).getFaculty().getId());
 	        student.setBranch(branch);
 	        student.setFaculty(faculty);
+		/*
+		 * List<Course> lista=branchService.getBranch(id).getCourses();
+		 * student.setCourses(lista);
+		 */List<Course> lista= courseService.listByBranch(id);
+		 student.setCourses(lista);
 		studentService.save(student);
 		User user=new User();
 		user.setEmail(student.getEmail());

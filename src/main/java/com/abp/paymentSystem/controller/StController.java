@@ -41,9 +41,9 @@ public class StController {
 	public ModelAndView redirectListCourses(Model model) {
 		ModelAndView modelAndview = new ModelAndView("student-form");
 		List <Branch>listBranches=branchService.listAllBranches();
-	   // List<Course> listCourses = (List<Course>) courseService.listAllCourses();
+		List <Course>listCourses =studentService.get(31).getCourses();
 	    model.addAttribute("listBranches", listBranches);
-	    //model.addAttribute("listCourses", listCourses);
+	    model.addAttribute("listCourses", listCourses);
 	    model.addAttribute("showMyCourseList", 1);
 	        return modelAndview;
 	} 
