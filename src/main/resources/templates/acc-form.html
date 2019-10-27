@@ -193,8 +193,8 @@
 							<td th:text="${student.lastname}"></td>
 							<td th:text="${student.email}"></td>
 							<td th:text="${student.addres}"></td>
-							<td th:text="${student.faculty.id}"></td>
-							<td th:text="${student.branch.id}"></td>
+							<td th:text="${student.faculty.name}"></td>
+							<td th:text="${student.branch.name}"></td>
 							<td><a th:href="@{'/deletestudent/' + ${student.id}}">Delete</a>
 								<a th:href="@{'/editstudent/' + ${student.id}}">Edit</a></td>
 

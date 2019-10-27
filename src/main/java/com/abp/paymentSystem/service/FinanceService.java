@@ -30,5 +30,8 @@ public class FinanceService {
 	public void deleteFinance(long id) {
 		repo.deleteById(id);
 	}
+	public Finance findFinanceByEmail(String email) {
+		return repo.findByEmail(email);
+	}
 
 }

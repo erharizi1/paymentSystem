@@ -1,9 +1,12 @@
 package com.abp.paymentSystem.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,10 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.abp.paymentSystem.entity.Branch;
 import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.entity.Faculty;
+import com.abp.paymentSystem.entity.Finance;
 import com.abp.paymentSystem.entity.Student;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.FacultyService;
+import com.abp.paymentSystem.service.FinanceService;
 import com.abp.paymentSystem.service.StudentService;
 //@PreAuthorize("hasAnyRole('FINANCE')")
 @Controller
@@ -34,6 +39,8 @@ public class AccountantController {
 	CourseService courseService;
 	@Autowired
 	StudentService studentService;
+	@Autowired
+	FinanceService financeService;
 	
 	@RequestMapping("/acc-form")
 	public String showadmin() {
@@ -90,7 +97,14 @@ public class AccountantController {
 	public ModelAndView indexOfStudents(Model model) {
 		ModelAndView modelAndview = new ModelAndView("acc-form");
 	    List<Student> listStudents = studentService.listAll();
-	    model.addAttribute("listStudents", listStudents);
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Finance finance=financeService.findFinanceByEmail(auth.getName());
+	    List<Student> studentOfMyFaculty=new ArrayList();
+	    for(Student s:listStudents) {
+	    	if(s.getFaculty().getId()==finance.getFaculty().getId())
+	    		studentOfMyFaculty.add(s);
+	    }
+	    model.addAttribute("listStudents", studentOfMyFaculty);
 	    model.addAttribute("showStudentDetails", 1);
 	        return modelAndview;
 	} 

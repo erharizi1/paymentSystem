@@ -11,4 +11,5 @@ import com.abp.paymentSystem.entity.Finance;
 @Repository
 public interface FinanceRepository extends CrudRepository<Finance, Long> {
 	 public List<Finance> findByFacultyId(long id);
+	 Finance findByEmail (String email);
 }

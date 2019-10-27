@@ -1,16 +1,12 @@
 package com.abp.paymentSystem.controller;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,11 +67,6 @@ public class StudentController {
 	        Faculty faculty=facultyService.get(branchService.getBranch(id).getFaculty().getId());
 	        student.setBranch(branch);
 	        student.setFaculty(faculty);
-		/*
-		 * List<Course> lista=branchService.getBranch(id).getCourses();
-		 * student.setCourses(lista);
-		 */List<Course> lista= courseService.listByBranch(id);
-		 student.setCourses(lista);
 		studentService.save(student);
 		User user=new User();
 		user.setEmail(student.getEmail());
@@ -103,22 +94,18 @@ public class StudentController {
 		model.addAttribute("courses",courses);
 		return "Student/student-courses";
 	}
-	@RequestMapping(value="/save",method = RequestMethod.POST)
-	public String saveStudentWithManyCourses(@Valid @ModelAttribute("student") Student student,Model model,@RequestParam(value = "ids" , required = false) int[] ids ,
-	         BindingResult bindingResult) {
-		
-		List<Course> lista=new ArrayList<Course>();
-        for(int i : ids) {
-			lista.add(courseService.getCourse(i));		
-		}
-        student.setCourses(lista);
-        Branch branch=branchService.getBranch(1);
-        Faculty faculty=facultyService.get(1);
-        student.setBranch(branch);
-        student.setFaculty(faculty);
-		studentService.save(student);
-		return "redirect:/Student/list_students";
-	}
+	/*
+	 * @RequestMapping(value="/save",method = RequestMethod.POST) public String
+	 * saveStudentWithManyCourses(@Valid @ModelAttribute("student") Student
+	 * student,Model model,@RequestParam(value = "ids" , required = false) int[] ids
+	 * , BindingResult bindingResult) {
+	 * 
+	 * List<Course> lista=new ArrayList<Course>(); for(int i : ids) {
+	 * lista.add(courseService.getCourse(i)); } student.setCourses(lista); Branch
+	 * branch=branchService.getBranch(1); Faculty faculty=facultyService.get(1);
+	 * student.setBranch(branch); student.setFaculty(faculty);
+	 * studentService.save(student); return "redirect:/Student/list_students"; }
+	 */
 }
 
 
