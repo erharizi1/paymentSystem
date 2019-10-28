@@ -1,6 +1,8 @@
 package com.abp.paymentSystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,4 +31,14 @@ public class CustomUserDetailsService implements UserDetailsService{
 		return optionalUser.map(CustomUserDetails::new).get();
 	}
 
+	public int getIdOfCurrentUser() {
+		 Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+		
+		 String email = loggedInUser.getName(); 
+
+		User optionalUser=userRepository.findUserByEmail(email);
+		 
+		    
+		    return  optionalUser.getId();
+	}
 }

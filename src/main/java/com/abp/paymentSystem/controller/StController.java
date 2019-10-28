@@ -18,6 +18,7 @@ import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.entity.Student;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
+import com.abp.paymentSystem.service.CustomUserDetailsService;
 import com.abp.paymentSystem.service.StudentService;
 
 
@@ -31,12 +32,16 @@ public class StController {
 	@Autowired
 	BranchService branchService;
 	
+	@Autowired
+	CustomUserDetailsService userservice;
+	
 	@RequestMapping("/student-form")
 	public String showStudent() {
 		return "student-form";
 	}
 
 	
+<<<<<<< Updated upstream
 //	@GetMapping("/student-form/addCourseList")
 //	public ModelAndView redirectListCourses(Model model) {
 //				
@@ -50,6 +55,19 @@ public class StController {
 //	        return modelAndview;
 //	} 
 //	 
+=======
+	@GetMapping("/student-form/addCourseList")
+	public ModelAndView redirectListCourses(Model model) {
+		ModelAndView modelAndview = new ModelAndView("student-form");
+		List <Branch>listBranches=branchService.listAllBranches();
+		List <Course>listCourses =studentService.get(userservice.getIdOfCurrentUser()).getCourses();
+	    model.addAttribute("listBranches", listBranches);
+	    model.addAttribute("listCourses", listCourses);
+	    model.addAttribute("showMyCourseList", 1);
+	        return modelAndview;
+	} 
+	 
+>>>>>>> Stashed changes
 	
 	@RequestMapping(value ="/student-form/addCourseList1", method = RequestMethod.POST)
 	public ModelAndView indexOfStu1dents(Model model,@RequestParam(value="branch",required =true) long id) {

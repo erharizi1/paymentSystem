@@ -11,6 +11,8 @@ import com.abp.paymentSystem.entity.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 
 	Optional<User> findByEmail(String username);
+	
+	User findUserByEmail(String email);
 
 
 	
