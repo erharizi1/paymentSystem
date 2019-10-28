@@ -1,7 +1,7 @@
 .sidebar-container {
-  position: absolute;
+  position: fixed;
   width: 225px;
-  height: 104%;
+  height: -webkit-fill-available;
   left: 0;
   overflow-x: hidden;
   overflow-y: auto;

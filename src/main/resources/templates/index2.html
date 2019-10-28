@@ -62,9 +62,15 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/acc-form">Finance</a>
+<<<<<<< Updated upstream
               </li> 
               <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                 <a class="nav-link" href="/Faculty/viewFaculty">Faculty</a>
+=======
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="#fakultet">Faculty</a>
+
               </li>
             <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
                 <a class="nav-link" href="/admin-form">Admin</a>
@@ -130,7 +136,7 @@
           <div class="col-md-6 order-md-2">
             <div class="block-16">
               <figure>
-                <img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid">
+                <img src="images/tirana.jpg" alt="Image placeholder" class="img-fluid">
                 <a href="https://vimeo.com/45830194" class="play-button popup-vimeo"><span class="ion-ios-play"></span></a>
 
                 <!-- <a href="https://vimeo.com/45830194" class="button popup-vimeo" data-aos="fade-right" data-aos-delay="700"><span class="ion-ios-play"></span></a> -->
@@ -159,13 +165,13 @@
     </section>
     <!-- END section -->
 
-    <div class="site-section bg-light">
+    <div  id="fakultet"class="site-section bg-light">
       <div class="container">
         <div class="row justify-content-center mb-5 element-animate">
           <div class="col-md-7 text-center section-heading">
             <h2 class="text-primary heading">Faculties</h2>
             <p>"An investment in knowledge pays the best interest."<br> –  Benjamin Franklin</p>
-            <p><a href="#" class="btn btn-primary py-2 px-4"><span class="ion-ios-book mr-2"></span>Enroll Now</a></p>
+            <p><a href="/Student/register" class="btn btn-primary py-2 px-4"><span class="ion-ios-book mr-2"></span>Enroll Now</a></p>
           </div>
         </div>
       </div>

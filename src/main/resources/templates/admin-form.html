@@ -22,12 +22,17 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="../css/style.css">
   </head>
-<body>
+
+<body style="background-color: rgb(75,75,75);">
 
   <div  th:replace="layouts/header::header">
   </div>
 
 	     <!-- <header role="banner" th:replace="/layouts/header::header">
+=======
+<body style="background-color: rgb(75,75,75);">
+<header role="banner">
+>>>>>>> Stashed changes
      
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -53,7 +58,7 @@
                 <a class="nav-link" href="/acc-form">Finance</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/Faculty/viewFaculty">Faculty</a>
+                <a class="nav-link" href="/#fakultet">Faculty</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/admin-form">Admin</a>
@@ -114,9 +119,9 @@
 		</ul>
 	</div>
 
-	<div class="content-container" style="height:104%;background-color:rgb(75,75,75);">
+	<div class="content-container" style="height:auto;">
 
-		<div class="container-fluid" style="width: 98%; margin-top:-20px;height:99%;">
+		<div class="container-fluid" style="width: 98%; height:99%;">
 
 
 
@@ -124,6 +129,8 @@
 
 
 				<!-- 	ADD A NEW FACULTY -->  >
+				<div class="row justify-content-center">
+          <div class="col-md-10">
             <div class="form-wrap1" th:if="${showFacultyForm} == 1">
               <h2 class="mb-5" align="center">Register a new faculty</h2>
              
@@ -145,13 +152,13 @@
                     </div>
                   </div>
                 </form>
-              </div>
+              </div></div></div>
           
 				<!-- 	END ADD A NEW FACULTY -->
 
 				<!-- 	SHOW FACULTY -->
 
-				<div class="form-wrap1" style=" height:500px;overflow: auto;"align="center"th:if="${showFacultyList} == 1">
+				<div class="form-wrap1" style=" height:auto;" align="center"th:if="${showFacultyList} == 1">
 					
 					<h1 class="mb-5">List faculties</h1>
 					<br>
@@ -182,7 +189,8 @@
 				<!-- 	ADD A NEW BRANCH -->
  
      
-            
+            <div class="row justify-content-center">
+          <div class="col-md-10">
 				<div  class="form-wrap1" th:if="${showBranchForm} == 1">
 					<h1 class="mb-5" align="center">Add New Branch</h1>
 					<form action="#" th:action="@{/admin-form/addBranch}"
@@ -214,13 +222,13 @@
                   </div>
 					</form>
 				</div>
-				
+				</div></div>
 				 
 				<!-- 	END ADD A NEW BRANCH -->
 
 				<!-- 	SHOW BRANCH -->
 
-				<div class="form-wrap1"style=" height:500px;overflow: auto;" align="center" th:if="${showBranchList} == 1">
+				<div class="form-wrap1"style=" height:auto;" align="center" th:if="${showBranchList} == 1">
 
 					<h1 class="mb-5">List Branch</h1>
 					<br>
@@ -249,7 +257,8 @@
 				<!-- END	SHOW  BRANCH -->
 
 				<!-- ADD  FINANCE -->
-
+	<div class="row justify-content-center">
+          <div class="col-md-10">
 				<div class="form-wrap1" th:if="${showFinanceForm} == 1">
 					<h2 class="mb-5" align="center">Register new finance</h2>
 					<form action="#" th:action="@{/admin-form/addFinance}"
@@ -303,13 +312,13 @@
 
 
 					</form>
-				</div>
+				</div></div></div>
 
 				<!-- END ADD  FINANCE -->
 
 				<!-- SHOW  FINANCE -->
 
-				<div class="form-wrap1" style=" height:500px;overflow: auto;" align="center" th:if="${showFinancesList} == 1">
+				<div class="form-wrap1" style=" height:auto;" align="center" th:if="${showFinancesList} == 1">
 					<h1 class="mb-5">Finance List</h1>
 					<br /> <br />
 					<form th:action="@{/admin-form/addFinanceList1}" method="post" >
@@ -355,7 +364,7 @@
 
 				<!-- 	SHOW  STUDENTS -->
 
-				<div class="form-wrap1" style=" height:500px;overflow: auto;" align="center" th:if="${showStudentList} == 1">
+				<div class="form-wrap1" style=" height:auto;" align="center" th:if="${showStudentList} == 1">
 
 					<h1 class="mb-5">Students List</h1>
 

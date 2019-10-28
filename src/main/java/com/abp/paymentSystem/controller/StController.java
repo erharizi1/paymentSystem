@@ -84,8 +84,10 @@ public class StController {
 	@GetMapping("/student-form/addStudentList")
 	public ModelAndView indexOfStudents(Model model) {
 		ModelAndView modelAndview = new ModelAndView("student-form");
-	    List<Student> listStudents = studentService.listAll();
-	    model.addAttribute("listStudents", listStudents);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    Student st=studentService.findByEmail(auth.getName());
+	    //List<Student> listStudents = studentService.listAll();
+	    model.addAttribute("listStudents", st);
 	    model.addAttribute("showMyStudentList", 1);
 	        return modelAndview;
 	} 

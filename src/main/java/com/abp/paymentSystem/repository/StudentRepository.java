@@ -9,5 +9,6 @@ import com.abp.paymentSystem.entity.Student;
 public interface StudentRepository extends CrudRepository<Student,Long>{
 	 public List<Student> findByBranchId(long id);
 	 Student findByEmail(String email);
+	  
 
 }

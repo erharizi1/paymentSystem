@@ -59,7 +59,7 @@ header .navbar {
 }
 
 header .navbar .navbar-nav.absolute-right {
-  position: absolute;
+  /* position: absolute; */
   right: 0;
 }
 

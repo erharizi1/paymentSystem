@@ -24,7 +24,7 @@
 <!-- Theme Style -->
 <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body style="background-color: rgb(75,75,75);">
 
   <div  th:replace="layouts/header::header">
   </div>
@@ -66,7 +66,7 @@
                 <a class="nav-link" href="/acc-form">Finance</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/Faculty/viewFaculty">Faculty</a>
+                <a class="nav-link" href="/#fakultet">Faculty</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/admin-form">Admin</a>
@@ -121,7 +121,7 @@
 
 
 	<div class="content-container"
-		style="height: 104%; background-color: rgb(75, 75, 75);">
+		style="height: auto;">
 
 		<div class="container-fluid"
 			style="width: 98%; margin-top: -20px; height: 99%;">
@@ -136,7 +136,7 @@
 			<!-- 	SHOW BRANCH -->
 
 			<div class="form-wrap1" align="center"
-				style="height: 500px; overflow: auto;"
+				style="height:auto;"
 				th:if="${showBranchList} == 1">
 
 				<h1>List Branch</h1>
@@ -217,7 +217,9 @@
 			<!-- END	SHOW  STUDENTS -->
 
 			<!-- ADD A NEW COURSE -->
-
+	<div class="row justify-content-center">
+          <div class="col-md-10">
+          
 			<div class="form-wrap1" th:if="${showCourssForm} == 1">
 				<h1 align="center">Add New Course</h1>
 				<form action="#" th:action="@{/acc-form/addCourse}"
@@ -235,13 +237,13 @@
 						<div class="col-md-12 form-group">
 							<label for="name">Course Price:</label> <input type="text"
 								th:field="*{price}" id="name" class="form-control py-2">
+</div></div>
+	<!-- <div class="content-container" style="height:104%;background-color:rgb(75,75,75);">
 
-	<div class="content-container" style="height:104%;background-color:rgb(75,75,75);">
-
-		<div class="container-fluid" style="width: 98%; margin-top:-20px;height:99%;">
+		<div class="container-fluid" style="width: 98%; margin-top:-20px;height:99%;"> -->
 				<!-- 	SHOW FACULTY -->
-
-				<div class="form-wrap1" align="center" style=" height:500px;overflow: auto;" th:if="${showFacultyList} == 1">
+	
+				<div class="form-wrap1" align="center" style=" height:auto;" th:if="${showFacultyList} == 1">
 
 					<h1>List faculties</h1>
 					<br>
@@ -278,7 +280,7 @@
 
 				<!-- 	SHOW BRANCH -->
 
-				<div  class="form-wrap1" align="center" style=" height:500px;overflow: auto;" th:if="${showBranchList} == 1">
+				<div  class="form-wrap1" align="center" style=" height:auto;" th:if="${showBranchList} == 1">
 
 					<h1>List Branch</h1>
 					<br>
@@ -309,7 +311,7 @@
 
 				<!-- 	SHOW  STUDENTS -->
 
-				<div  class="form-wrap1" align="center" style=" height:500px;overflow: auto;" th:if="${showStudentList} == 1">
+				<div  class="form-wrap1" align="center" style=" height: auto;" th:if="${showStudentList} == 1">
 
 					<h1>Students List</h1>
 
@@ -388,7 +390,7 @@
 			<!-- 			SHOW  COURSE -->
 
 			<div class="form-wrap1" align="center"
-				style="height: 500px; overflow: auto;"
+				style="height: auto;"
 				th:if="${showCourseList} == 1">
 
 				<h1>Course List</h1>
@@ -422,7 +424,7 @@
 
 			<!-- 			END	SHOW  COURSE -->
 		</div>
-	</div>
+	</div></div></div>
 
 </body>
 </html>
