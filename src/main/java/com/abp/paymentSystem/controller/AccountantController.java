@@ -65,9 +65,20 @@ public class AccountantController {
 
 	@GetMapping("/acc-form/addBranchList")
 	public ModelAndView redirectListBranches(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Finance finance=financeService.findFinanceByEmail(auth.getName());
+		Faculty faculty=facultyService.get(finance.getFaculty().getId());
+		System.out.println(faculty.getName());
+		
+		List<Branch> branches=branchService.listAllBranches();
+		List<Branch> branchOfFinance=new ArrayList();
+		for(Branch b:branches) {
+			if(b.getFaculty().getId()==faculty.getId())
+				branchOfFinance.add(b);
+		}
 		ModelAndView modelAndview = new ModelAndView("acc-form");
-	    List<Branch> listBranches = (List<Branch>) branchService.listAllBranches();
-	    model.addAttribute("listBranches", listBranches);
+	    
+	    model.addAttribute("listBranches", branchOfFinance);
 	    List <Faculty>listFaculties=facultyService.listAll();
 	    model.addAttribute("listFaculties", listFaculties);
 	    model.addAttribute("showBranchList", 1);
@@ -78,7 +89,19 @@ public class AccountantController {
   public ModelAndView redirectCourseForm(Model model) {
 		ModelAndView modelAndview = new ModelAndView("acc-form");
 		model.addAttribute("course", new Course());
-		model.addAttribute("allBranches", branchService.listAllBranches());
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Finance finance=financeService.findFinanceByEmail(auth.getName());
+		Faculty faculty=facultyService.get(finance.getFaculty().getId());
+		System.out.println(faculty.getName());
+		
+		List<Branch> branches=branchService.listAllBranches();
+		List<Branch> branchOfFinance=new ArrayList();
+		for(Branch b:branches) {
+			if(b.getFaculty().getId()==faculty.getId())
+				branchOfFinance.add(b);
+		}
+		model.addAttribute("allBranches",branchOfFinance);
       model.addAttribute("showCourssForm", 1);
       return modelAndview;
 	}

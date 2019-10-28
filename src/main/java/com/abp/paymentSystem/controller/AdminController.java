@@ -100,6 +100,9 @@ public class AdminController {
 	@RequestMapping("/admin-form/addBranch")
 	public ModelAndView redirectSaveBranches(@ModelAttribute("branch") Branch branch,ModelMap model ) {
 		branchService.saveBranch(branch);
+//		Faculty faculty=facultyService.get(1);
+//		faculty.setBranches((List<Branch>) branch);
+//		facultyService.save(faculty);
 		return new ModelAndView("forward:/admin-form", model);
 	}
 
