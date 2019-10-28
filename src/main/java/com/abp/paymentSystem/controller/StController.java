@@ -2,9 +2,9 @@ package com.abp.paymentSystem.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,17 +37,19 @@ public class StController {
 	}
 
 	
-	@GetMapping("/student-form/addCourseList")
-	public ModelAndView redirectListCourses(Model model) {
-		ModelAndView modelAndview = new ModelAndView("student-form");
-		List <Branch>listBranches=branchService.listAllBranches();
-		List <Course>listCourses =studentService.get(31).getCourses();
-	    model.addAttribute("listBranches", listBranches);
-	    model.addAttribute("listCourses", listCourses);
-	    model.addAttribute("showMyCourseList", 1);
-	        return modelAndview;
-	} 
-	 
+//	@GetMapping("/student-form/addCourseList")
+//	public ModelAndView redirectListCourses(Model model) {
+//				
+//		ModelAndView modelAndview = new ModelAndView("student-form");		
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();	
+//		List <Branch>listBranches=branchService.listAllBranches();
+////		List <Course>listCourses =studentService.get(31).getCourses();
+//	    model.addAttribute("listBranches", listBranches);
+////	    model.addAttribute("listCourses", listCourses);
+//	    model.addAttribute("showMyCourseList", 1);
+//	        return modelAndview;
+//	} 
+//	 
 	
 	@RequestMapping(value ="/student-form/addCourseList1", method = RequestMethod.POST)
 	public ModelAndView indexOfStu1dents(Model model,@RequestParam(value="branch",required =true) long id) {

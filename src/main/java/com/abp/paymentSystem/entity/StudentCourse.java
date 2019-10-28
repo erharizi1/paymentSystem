@@ -18,6 +18,8 @@ public class StudentCourse implements Serializable {
     @ManyToOne
     @JoinColumn
     private Course course;
+    
+    
     private Boolean paid;
     
     public StudentCourse() {

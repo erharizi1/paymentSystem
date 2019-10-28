@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div align="center">
+        <h1>Payment</h1>
+        <br />
+        <form action="#" th:action="@{/savePayment}" th:object="${courses}"
+            method="post">
+            
+             
+ 
+            <table border="0" cellpadding="10">
+                    
+                <th:block th:each="c : ${courses}">
+                <input type="hidden"  th:value="${student.id}" name="studentId">
+	                <input type="checkbox" name="ids" th:value="${c.course.id}"/>
+	                 <label th:text="${c.course.name}"></label>
+               </th:block>
+                                       
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.abp.paymentSystem.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,11 +19,13 @@ import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.entity.Faculty;
 import com.abp.paymentSystem.entity.Role;
 import com.abp.paymentSystem.entity.Student;
+import com.abp.paymentSystem.entity.StudentCourse;
 import com.abp.paymentSystem.entity.User;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.FacultyService;
 import com.abp.paymentSystem.service.RoleService;
+
 import com.abp.paymentSystem.service.StudentService;
 import com.abp.paymentSystem.service.UserService;
 
@@ -36,6 +39,7 @@ public class StudentController {
 @Autowired private FacultyService facultyService;
 @Autowired private RoleService roleService;
 @Autowired private UserService userService;
+
 	
 	@RequestMapping("/Student/list_students")
 	public String viewStudents(Model model) {
@@ -67,7 +71,22 @@ public class StudentController {
 	        Faculty faculty=facultyService.get(branchService.getBranch(id).getFaculty().getId());
 	        student.setBranch(branch);
 	        student.setFaculty(faculty);
-		studentService.save(student);
+	        
+			List<StudentCourse> sc=new ArrayList();
+			
+			for(Course c:courseService.listByBranch(branch.getId())) {
+					StudentCourse studentCourses=new StudentCourse();				
+					studentCourses.setStudent(student);
+					studentCourses.setCourse(c);
+					studentCourses.setPaid(false);
+					sc.add(studentCourses);
+									
+			}
+			
+			student.setCourses(sc);
+			studentService.save(student);
+			   
+		
 		User user=new User();
 		user.setEmail(student.getEmail());
 		user.setLastname(student.getLastname());
@@ -76,10 +95,11 @@ public class StudentController {
 		Set<Role> roles=new HashSet<>();
 		roles.add(role); 
 		user.setRole(roles);
-		user.setPassword(student.getPassword());
-		
+		user.setPassword(student.getPassword());		
 		userService.saveUser(user);
-	    return "redirect:/student-form";
+		
+		
+	   return "redirect:/student-form";
 	}
 	
 	@RequestMapping("/deletestudent/{id}")
@@ -94,6 +114,9 @@ public class StudentController {
 		model.addAttribute("courses",courses);
 		return "Student/student-courses";
 	}
+	
+	
+	
 	/*
 	 * @RequestMapping(value="/save",method = RequestMethod.POST) public String
 	 * saveStudentWithManyCourses(@Valid @ModelAttribute("student") Student

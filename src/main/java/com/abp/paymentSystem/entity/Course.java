@@ -10,9 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 @Entity
@@ -37,23 +37,33 @@ public class Course {
 	@JoinColumn(name="branch_id",nullable = false)
 	private Branch branch;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name="course_student",joinColumns=@JoinColumn(name="course_ID"),inverseJoinColumns=@JoinColumn(name="student_ID"))
-	private List<Student> students;
+	
+	@OneToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE,
+			CascadeType.DETACH,CascadeType.REFRESH},mappedBy="course")
+	private List<StudentCourse> studentCourses;
+	
+	
 	
 	public Course() {
 		
 	}
 
-	
-	public List<Student> getStudents() {
-		return students;
+
+
+	public List<StudentCourse> getStudents() {
+		return studentCourses;
 	}
 
 
-	public void setStudents(List<Student> students) {
-		this.students = students;
+
+
+
+	public void setStudents(List<StudentCourse> studentCourses) {
+		this.studentCourses = studentCourses;
 	}
+
+
+
 
 
 	public long getId() {

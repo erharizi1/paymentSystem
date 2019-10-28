@@ -2,16 +2,17 @@ package com.abp.paymentSystem.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
@@ -37,9 +38,21 @@ public class Student {
 	@ManyToOne
 	@JoinColumn(nullable=false, name = "branch_id")
 	private Branch branch;
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name="course_student",joinColumns=@JoinColumn(name="student_ID"),inverseJoinColumns=@JoinColumn(name="course_ID"))
-	private List<Course> courses;
+	
+	@OneToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE,
+			CascadeType.DETACH,CascadeType.REFRESH},mappedBy="student")
+	private List<StudentCourse> studentCourses;
+	
+	
+	
+	public List<StudentCourse> getCourses() {
+		return studentCourses;
+	}
+	public void setCourses(List<StudentCourse> studentCourses) {
+		this.studentCourses = studentCourses;
+	}
+
+
 	@Column( nullable=false )
 	private String password;
 	
@@ -65,17 +78,6 @@ public class Student {
 		this.faculty = faculty;
 		this.branch = branch;
 	}
-
-
-	public List<Course> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}
-
-	
 
 	public void setId(long id) {
 		this.id = id;

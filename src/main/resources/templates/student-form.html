@@ -63,9 +63,16 @@
               </li>
             </ul>
             <ul class="navbar-nav absolute-right">
-              <li>
-                <a href="/login5">Login</a> / <a href="/Student/register">Register</a>
-              </li>
+              <form th:action="@{/app-logout}" method="POST" id="demo1">
+	                 <ul class="navbar-nav absolute-right">
+			              <li>
+					         <a href="#" onclick="document.getElementById('demo1').submit();">Logout</a>/
+					          <a href="/Student/register">Register</a>
+					      </li>
+              
+                    </ul>
+			    </form>
+	     
               
             </ul>
             

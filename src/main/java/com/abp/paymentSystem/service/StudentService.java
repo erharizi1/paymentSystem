@@ -32,4 +32,7 @@ public class StudentService {
 	    public void delete(long id) {
 	        repo.deleteById(id);
 	    }
+	    public Student findByEmail(String email) {
+	    	return repo.findByEmail(email);
+	    }
 }

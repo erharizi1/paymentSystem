@@ -3,6 +3,8 @@ package com.abp.paymentSystem.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -10,8 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +26,7 @@ import com.abp.paymentSystem.entity.Course;
 import com.abp.paymentSystem.entity.Faculty;
 import com.abp.paymentSystem.entity.Finance;
 import com.abp.paymentSystem.entity.Student;
+import com.abp.paymentSystem.entity.StudentCourse;
 import com.abp.paymentSystem.service.BranchService;
 import com.abp.paymentSystem.service.CourseService;
 import com.abp.paymentSystem.service.FacultyService;
@@ -97,6 +102,7 @@ public class AccountantController {
 	public ModelAndView indexOfStudents(Model model) {
 		ModelAndView modelAndview = new ModelAndView("acc-form");
 	    List<Student> listStudents = studentService.listAll();
+
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    Finance finance=financeService.findFinanceByEmail(auth.getName());
 	    List<Student> studentOfMyFaculty=new ArrayList();
@@ -105,8 +111,65 @@ public class AccountantController {
 	    		studentOfMyFaculty.add(s);
 	    }
 	    model.addAttribute("listStudents", studentOfMyFaculty);
+
+	    
+
 	    model.addAttribute("showStudentDetails", 1);
 	        return modelAndview;
-	} 
+	}
+	/*
+	@RequestMapping("/studentPayment/{id}")
+	public String showPayment(@PathVariable(name = "id") long id,Model model) {
+		Student student=studentService.get(id);
+		List<StudentCourse> sc=new ArrayList();
+		for(StudentCourse ss:student.getCourses()) {
+			if(ss.getPaid()==false)
+				sc.add(ss);
+		}
+		List<Course> courses=new ArrayList();
+		for(StudentCourse s:sc) {
+			Course course=s.getCourse();
+			courses.add(course);
+		}
+		model.addAttribute("courses",courses);
+		model.addAttribute("student",student);
+		return "studentPayment";
+	}
+	*/
+	@RequestMapping("/studentPayment/{id}")
+	public String showPayment(@PathVariable(name = "id") long id,Model model) {
+		Student student=studentService.get(id);
+		List<StudentCourse> sc=new ArrayList();
+		for(StudentCourse ss:student.getCourses()) {
+			if(ss.getPaid()==false)
+				sc.add(ss);
+		}
+		
+		model.addAttribute("courses",sc);
+		model.addAttribute("student",student);
+		return "studentPayment";
+	}
+	
+	@RequestMapping(value="/savePayment",method = RequestMethod.POST) 
+	public String saveStudentPayments(
+			
+			Model model,@RequestParam(value = "ids" , required = false) int[] ids,
+			@RequestParam(value="studentId",required=false)Long studentId ) {
+		
+	  Student student=studentService.get(studentId);
+	  List<StudentCourse> lista=new ArrayList<StudentCourse>(); 
+	  for(int i : ids) {
+	  Course course=courseService.getCourse(i);
+	  StudentCourse sc=new StudentCourse();
+	  sc.setCourse(course);
+	  sc.setPaid(true);
+	  sc.setStudent(student);
+	  lista.add(sc);
+	  } 
+	  student.setCourses(lista);	  
+	  studentService.save(student); 
+	  return "redirect:/acc-form"; }
+	 
+	
 
 }
