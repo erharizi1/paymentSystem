@@ -192,7 +192,5 @@ public class AccountantController {
 	  student.setCourses(lista);	  
 	  studentService.save(student); 
 	  return "redirect:/acc-form"; }
-	 
-	
 
 }

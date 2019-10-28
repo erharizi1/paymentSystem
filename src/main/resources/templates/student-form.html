@@ -170,13 +170,7 @@
 								<h1>Course List</h1>
 
 								<br />
-							<form th:action="@{/student-form/addCourseList1}" method="post" >
-							<select class="px-5 py-1" th:name="branch" >
-								<option value="">Select branch</option>
-	                            <option th:each="b:${listBranches}" th:value="${b.id}" th:text="${b.name}"> </option>
-                        	</select>
-                        	<button type="submit" class="btn btn-outline-dark px-2 py-1"> Find Course by Branch </button> 
-                        	</form>
+							
                         <br><br><br>
 								<table border="1" class="table table-striped">
 									<thead class="thead-dark">
@@ -185,7 +179,7 @@
 											<th>Name</th>
 											<th>Price</th>
 											<th>Branch</th>
-											<th>Status</th>
+											
 
 										</tr>
 									</thead>

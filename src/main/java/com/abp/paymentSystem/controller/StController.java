@@ -1,5 +1,6 @@
 package com.abp.paymentSystem.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,11 +60,21 @@ public class StController {
 
 	@GetMapping("/student-form/addCourseList")
 	public ModelAndView redirectListCourses(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Student student=studentService.findByEmail(auth.getName());
+		Branch branch=branchService.getBranch(student.getBranch().getId());
+		
 		ModelAndView modelAndview = new ModelAndView("student-form");
 		List <Branch>listBranches=branchService.listAllBranches();
-		List<StudentCourse>listCourses =studentService.get(userservice.getIdOfCurrentUser()).getCourses();
+		List<Course> courses=new ArrayList();
+		List<Course>listCourses =courseService.listAllCourses();
+		for(Course c:listCourses) {
+			if(c.getBranch().getId()==branch.getId())
+				courses.add(c);
+		}
+		
 	    model.addAttribute("listBranches", listBranches);
-	    model.addAttribute("listCourses", listCourses);
+	    model.addAttribute("listCourses", courses);
 	    model.addAttribute("showMyCourseList", 1);
 	        return modelAndview;
 	} 
